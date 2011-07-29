@@ -61,12 +61,12 @@ class Help {
         """.stripIndent()
     }
 
-    static void printHelp() {
+    static void printHelpAndExit() {
         System.err << helpInfo
         System.exit 2
     }
 
-    static void printVersion() {
+    static void printVersionAndExit() {
         System.err << versionInfo
         System.exit 1
     }

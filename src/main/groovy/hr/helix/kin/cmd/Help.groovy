@@ -63,12 +63,12 @@ class Help {
 
     static void printHelpAndExit() {
         System.err << helpInfo
-        System.exit 2
+        System.exit 1
     }
 
     static void printVersionAndExit() {
         System.err << versionInfo
-        System.exit 1
+        System.exit 2
     }
 
 }

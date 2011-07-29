@@ -11,14 +11,6 @@ class Help {
     static final String VERSION  = '1.0'
     static final String DOC_LINK = 'https://github.com/mbezjak/kin'
 
-    static String getVersionInfo() {
-        """\
-        kin $VERSION
-        License MIT: http://www.opensource.org/licenses/mit-license.php
-        Documentation & source code: $DOC_LINK
-        """.stripIndent()
-    }
-
     static String getHelpInfo() {
         """\
         kin - jenkins/hudson job configuration generator
@@ -61,14 +53,22 @@ class Help {
         """.stripIndent()
     }
 
-    static void printVersion() {
-        System.err << versionInfo
-        System.exit 1
+    static String getVersionInfo() {
+        """\
+        kin $VERSION
+        License MIT: http://www.opensource.org/licenses/mit-license.php
+        Documentation & source code: $DOC_LINK
+        """.stripIndent()
     }
 
     static void printHelp() {
         System.err << helpInfo
         System.exit 2
+    }
+
+    static void printVersion() {
+        System.err << versionInfo
+        System.exit 1
     }
 
 }

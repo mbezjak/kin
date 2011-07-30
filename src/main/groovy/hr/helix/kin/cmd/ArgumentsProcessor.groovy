@@ -13,7 +13,7 @@ class ArgumentsProcessor {
 
     static final String DEFAULT_BUILD_FILE = 'build.kin'
 
-    static File process(String[] args) {
+    File process(String[] args) {
         if (args.size() == 0) {
             return buildFile(DEFAULT_BUILD_FILE) {
                 printHelpAndExit()
@@ -33,7 +33,7 @@ class ArgumentsProcessor {
     /**
      * Returns {@link File} if it exists as a file under given name.
      */
-    private static File buildFile(String name, Closure onNotFile) {
+    private File buildFile(String name, Closure onNotFile) {
         def f = new File(name)
         f.isFile() ? f : onNotFile(name)
     }

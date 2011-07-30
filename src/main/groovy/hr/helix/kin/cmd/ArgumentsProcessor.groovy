@@ -1,8 +1,6 @@
 package hr.helix.kin.cmd
 
 /**
- * Parses arguments and returns build file.
- * 
  * @author Miro Bezjak
  * @since 1.0
  */
@@ -10,35 +8,58 @@ class ArgumentsProcessor {
 
     static final String DEFAULT_BUILD_FILE = 'build.kin'
 
-    File process(String[] args) {
-        if (args.size() == 0) {
+    private final CommandLineOperations op
+    private final String[] args
+
+    ArgumentsProcessor(CommandLineOperations op, String[] args) {
+        this.op = op
+        this.args = args
+    }
+
+    /**
+     * Process arguments and return build file.
+     */
+    File process() {
+        printHelpAndExitIfNeeded()
+        printVersionAndExitIfNeeded()
+
+        if (hasNoArguments()) {
             return buildFile(DEFAULT_BUILD_FILE) {
-                printHelpAndExit()
+                op.printHelpAndExit()
             }
-        } else if (args.size() > 1 || args[0] in ['-h', '--help']) {
-            printHelpAndExit()
-        } else if (args[0] in ['-v', '--version']) {
-            printVersionAndExit()
         } else {
             return buildFile(args[0]) { name ->
-                System.err.println "'$name' doesn't exist or is not a file!"
-                System.exit 3
+                op.printNoBuildFileAndExit name
             }
         }
     }
 
-    private void printHelpAndExit() {
-        System.err.println Help.helpInfo
-        System.exit 1
+    private void printHelpAndExitIfNeeded() {
+        if (hasHelpSwitch() || args.size() > 1) {
+            op.printHelpAndExit()
+        }
     }
 
-    private void printVersionAndExit() {
-        System.err.println Help.versionInfo
-        System.exit 2
+    private void printVersionAndExitIfNeeded() {
+        if (hasVersionSwitch()) {
+            op.printVersionAndExit()
+        }
+    }
+
+    private boolean hasNoArguments() {
+        args.size() == 0
+    }
+
+    private boolean hasHelpSwitch() {
+        args.size() == 1 && args[0] in ['-h', '--help']
+    }
+
+    private boolean hasVersionSwitch() {
+        args.size() == 1 && args[0] in ['-v', '--version']
     }
 
     /**
-     * Returns {@link File} if it exists as a file under given name.
+     * Returns {@link File} if it exists and is a file
      */
     private File buildFile(String name, Closure onNotFile) {
         def f = new File(name)

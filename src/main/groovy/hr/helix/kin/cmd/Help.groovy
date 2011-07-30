@@ -25,8 +25,8 @@ class Help {
 
           maven {
               producesConfig = false
-              mavenVersion = '3.0.3'
               template = 'maven.tpl'
+              mavenVersion = '3.0.3'
           }
 
           foo {
@@ -39,16 +39,16 @@ class Help {
           bar {
               inherit 'maven'
               scm = 'http://example.com/git/bar'
-              mavenVersion = '2.2.1'
+              mavenVersion = '2.2.1' // overrides parent
               groupId = 'com.example.bar'
               artifactId = 'bar'
           }
 
           quux {
+              template = 'grails.tpl'
               scm = 'http://example.com/hg/quux'
               grailsVersion = '1.3.7'
               deploy = true
-              template = 'grails.tpl'
           }
 
         License MIT: http://www.opensource.org/licenses/mit-license.php

@@ -24,24 +24,27 @@ class Help {
         Example build.kin:
 
           maven {
+              job = false
               mavenVersion = '3.0.3'
               template = 'maven.tpl'
           }
 
-          maven('foo') {
+          foo {
+              inherit 'maven'
               scm = 'http://example.com/git/foo'
               groupId = 'com.example.foo'
               artifactId = 'foo'
           }
 
-          maven('bar') {
+          bar {
+              inherit 'maven'
               scm = 'http://example.com/git/bar'
               mavenVersion = '2.2.1'
               groupId = 'com.example.bar'
               artifactId = 'bar'
           }
 
-          grails('quux') {
+          quux {
               scm = 'http://example.com/hg/quux'
               grailsVersion = '1.3.7'
               deploy = true

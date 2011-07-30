@@ -1,8 +1,5 @@
 package hr.helix.kin.cmd
 
-import static hr.helix.kin.cmd.Help.printHelpAndExit
-import static hr.helix.kin.cmd.Help.printVersionAndExit
-
 /**
  * Parses arguments and returns build file.
  * 
@@ -28,6 +25,16 @@ class ArgumentsProcessor {
                 System.exit 3
             }
         }
+    }
+
+    private void printHelpAndExit() {
+        System.err.println Help.helpInfo
+        System.exit 1
+    }
+
+    private void printVersionAndExit() {
+        System.err.println Help.versionInfo
+        System.exit 2
     }
 
     /**

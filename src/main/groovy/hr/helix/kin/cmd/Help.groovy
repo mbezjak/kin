@@ -1,7 +1,7 @@
 package hr.helix.kin.cmd
 
 /**
- * Provides version and help information.
+ * Provides help and version information.
  * 
  * @author Miro Bezjak
  * @since 1.0
@@ -53,7 +53,7 @@ class Help {
 
         License MIT: http://www.opensource.org/licenses/mit-license.php
         Documentation & source code: $DOC_LINK
-        """.stripIndent()
+        """.stripIndent().trim()
     }
 
     static String getVersionInfo() {
@@ -61,17 +61,7 @@ class Help {
         kin $VERSION
         License MIT: http://www.opensource.org/licenses/mit-license.php
         Documentation & source code: $DOC_LINK
-        """.stripIndent()
-    }
-
-    static void printHelpAndExit() {
-        System.err << helpInfo
-        System.exit 1
-    }
-
-    static void printVersionAndExit() {
-        System.err << versionInfo
-        System.exit 2
+        """.stripIndent().trim()
     }
 
 }

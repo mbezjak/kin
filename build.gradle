@@ -1,6 +1,9 @@
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
 repositories {
     mavenCentral()
     mavenRepo urls: 'http://m2repo.spockframework.org/snapshots'

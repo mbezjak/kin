@@ -102,7 +102,6 @@ class JobSpec extends Specification {
             b = "string"
         }
         """.stripIndent()
-        println job
 
         expect:
         job.toString() == expected

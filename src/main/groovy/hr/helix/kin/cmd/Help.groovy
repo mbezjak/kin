@@ -24,7 +24,7 @@ class Help {
         Example build.kin:
 
           maven {
-              job = false
+              producesConfig = false
               mavenVersion = '3.0.3'
               template = 'maven.tpl'
           }

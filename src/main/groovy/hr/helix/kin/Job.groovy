@@ -11,7 +11,7 @@ import groovy.transform.EqualsAndHashCode
 @EqualsAndHashCode
 class Job {
 
-    boolean job = true
+    boolean producesConfig = true
     final List<String> inheritFromParents = []
     final Map<String, Object> traits      = [:]
 

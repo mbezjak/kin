@@ -24,7 +24,7 @@ class ArgumentsProcessor {
             printVersionAndExit()
         } else {
             return buildFile(args[0]) { name ->
-                System.err.println "'$name' doesn't exist or is not a file"
+                System.err.println "'$name' doesn't exist or is not a file!"
                 System.exit 3
             }
         }

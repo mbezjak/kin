@@ -70,4 +70,42 @@ class JobSpec extends Specification {
         job.b == v2
     }
 
+    def "toString should generate valid dsl code on empty job"() {
+        given:
+        def expected = """\
+        simple {
+            inherit([])
+            producesConfig = true
+            template = null
+        }
+        """.stripIndent()
+
+        expect:
+        job.toString() == expected
+    }
+
+    def "toString should generate valid dsl code on configured job"() {
+        given:
+        job.with {
+            inherit 'foo', 'bar'
+            producesConfig = false
+            template = 'foo.tpl'
+            a = 1
+            b = 'string'
+        }
+        def expected = """\
+        simple {
+            inherit(["foo", "bar"])
+            producesConfig = false
+            template = "foo.tpl"
+            a = 1
+            b = "string"
+        }
+        """.stripIndent()
+        println job
+
+        expect:
+        job.toString() == expected
+    }
+
 }

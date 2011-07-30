@@ -44,4 +44,18 @@ class Job {
         traits[name]
     }
 
+    String toString() {
+        def dsl = """\
+        $name {
+            inherit(${inheritFromParents.inspect()})
+            producesConfig = $producesConfig
+            template = ${template.inspect()}@@traits@@
+        }
+        """.stripIndent()
+
+        dsl.replace '@@traits@@', traits.collect { key, value ->
+            "\n    $key = ${value.inspect()}"
+        }.join('')
+    }
+
 }

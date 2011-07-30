@@ -77,8 +77,7 @@ class JobSpec extends Specification {
             inherit([])
             producesConfig = true
             template = null
-        }
-        """.stripIndent()
+        }""".stripIndent()
 
         expect:
         job.toString() == expected
@@ -100,8 +99,7 @@ class JobSpec extends Specification {
             template = "foo.tpl"
             a = 1
             b = "string"
-        }
-        """.stripIndent()
+        }""".stripIndent()
 
         expect:
         job.toString() == expected

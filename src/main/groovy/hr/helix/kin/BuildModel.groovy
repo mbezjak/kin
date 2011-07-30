@@ -17,7 +17,7 @@ class BuildModel {
     String toString() {
         jobs.collect { name, job ->
             job as String
-        }.join('\n')
+        }.join('\n\n')
     }
 
 }

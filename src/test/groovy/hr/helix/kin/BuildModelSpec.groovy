@@ -34,8 +34,7 @@ class BuildModelSpec extends Specification {
             inherit([])
             producesConfig = true
             template = null
-        }
-        """.stripIndent()
+        }""".stripIndent()
 
         expect:
         model.toString() == expected

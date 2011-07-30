@@ -51,7 +51,7 @@ class Job {
             producesConfig = $producesConfig
             template = ${template.inspect()}@@traits@@
         }
-        """.stripIndent()
+        """.stripIndent().trim()
 
         dsl.replace '@@traits@@', traits.collect { key, value ->
             "\n    $key = ${value.inspect()}"

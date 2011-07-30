@@ -11,9 +11,17 @@ import groovy.transform.EqualsAndHashCode
 @EqualsAndHashCode
 class Job {
 
+    final String name
     boolean producesConfig = true
     final List<String> inheritFromParents = []
     final Map<String, Object> traits      = [:]
+
+    Job(String name) {
+        if (!name) {
+            throw new IllegalArgumentException('Job must have valid name')
+        }
+        this.name = name
+    }
 
     void inherit(String parent) {
         inherit([parent])

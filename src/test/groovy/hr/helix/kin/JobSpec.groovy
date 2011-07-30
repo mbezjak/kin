@@ -4,7 +4,15 @@ import spock.lang.*
 
 class JobSpec extends Specification {
 
-    def model = new Job()
+    def model = new Job('simple')
+
+    def "constructor should throw exception if name is falsy"() {
+        when:
+        new Job('')
+
+        then:
+        thrown(IllegalArgumentException)
+    }
 
     def "should allow single inheritance"() {
         when:

@@ -4,7 +4,7 @@ import spock.lang.*
 
 class JobSpec extends Specification {
 
-    def model = new Job('simple')
+    def job = new Job('simple')
 
     def "constructor should throw exception if name is falsy"() {
         when:
@@ -16,43 +16,43 @@ class JobSpec extends Specification {
 
     def "should allow single inheritance"() {
         when:
-        model.with {
+        job.with {
             inherit 'foo'
         }
 
         then:
-        model.inheritFromParents == ['foo']
+        job.inheritFromParents == ['foo']
     }
 
     def "should allow multiple inheritance by multiple inherit statements"() {
         when:
-        model.with {
+        job.with {
             inherit 'foo'
             inherit 'bar'
         }
 
         then:
-        model.inheritFromParents == ['foo', 'bar']
+        job.inheritFromParents == ['foo', 'bar']
     }
 
     def "should allow multiple inheritance by specifying array"() {
         when:
-        model.with {
+        job.with {
             inherit 'foo', 'bar'
         }
 
         then:
-        model.inheritFromParents == ['foo', 'bar']
+        job.inheritFromParents == ['foo', 'bar']
     }
 
     def "should allow multiple inheritance by specifying list"() {
         when:
-        model.with {
+        job.with {
             inherit(['foo', 'bar'])
         }
 
         then:
-        model.inheritFromParents == ['foo', 'bar']
+        job.inheritFromParents == ['foo', 'bar']
     }
 
     def "should allow setting traits"() {
@@ -60,14 +60,14 @@ class JobSpec extends Specification {
         def (v1, v2) = ['value', 'another value']
 
         when:
-        model.with {
+        job.with {
             a = v1
             b = v2
         }
 
         then:
-        model.a == v1
-        model.b == v2
+        job.a == v1
+        job.b == v2
     }
 
 }

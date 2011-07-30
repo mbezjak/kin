@@ -9,7 +9,7 @@ import groovy.transform.EqualsAndHashCode
  * @since 1.0
  */
 @EqualsAndHashCode
-class Model {
+class Job {
 
     boolean job = true
     final List<String> inheritFromParents = []

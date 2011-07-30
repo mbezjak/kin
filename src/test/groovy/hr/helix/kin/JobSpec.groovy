@@ -2,9 +2,9 @@ package hr.helix.kin
 
 import spock.lang.*
 
-class ModelSpec extends Specification {
+class JobSpec extends Specification {
 
-    def model = new Model()
+    def model = new Job()
 
     def "should allow single inheritance"() {
         when:

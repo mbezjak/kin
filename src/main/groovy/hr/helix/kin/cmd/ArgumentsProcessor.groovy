@@ -8,10 +8,10 @@ class ArgumentsProcessor {
 
     static final String DEFAULT_BUILD_FILE = 'build.kin'
 
-    private final CommandLineOperations op
+    private final TerminalOperations op
     private final String[] args
 
-    ArgumentsProcessor(CommandLineOperations op, String[] args) {
+    ArgumentsProcessor(TerminalOperations op, String[] args) {
         this.op = op
         this.args = args
     }

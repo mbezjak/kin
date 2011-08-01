@@ -6,64 +6,47 @@ package hr.helix.kin.cmd
  */
 class ArgumentsProcessor {
 
-    static final String DEFAULT_BUILD_FILE = 'build.kin'
-
     private final TerminalOperations op
-    private final String[] args
 
-    ArgumentsProcessor(TerminalOperations op, String[] args) {
+    ArgumentsProcessor(TerminalOperations op) {
         this.op = op
-        this.args = args
     }
 
     /**
-     * Process arguments and return build file.
+     * Process <code>-h,--help,-v,--version<code> command line switches.
+     * 
+     * @param args command line arguments
+     * @return given build file name
      */
-    File process() {
-        printHelpAndExitIfNeeded()
-        printVersionAndExitIfNeeded()
+    String process(String[] args) {
+        printHelpAndExitIfNeeded args
+        printVersionAndExitIfNeeded args
 
-        if (hasNoArguments()) {
-            return buildFile(DEFAULT_BUILD_FILE) {
-                op.printHelpAndExit()
-            }
-        } else {
-            return buildFile(args[0]) { name ->
-                op.printNoBuildFileAndExit name
-            }
-        }
+        firstArgument args
     }
 
-    private void printHelpAndExitIfNeeded() {
-        if (hasHelpSwitch() || args.size() > 1) {
+    private void printHelpAndExitIfNeeded(args) {
+        if (hasHelpSwitch(args) || args.size() > 1) {
             op.printHelpAndExit()
         }
     }
 
-    private void printVersionAndExitIfNeeded() {
-        if (hasVersionSwitch()) {
+    private void printVersionAndExitIfNeeded(args) {
+        if (hasVersionSwitch(args)) {
             op.printVersionAndExit()
         }
     }
 
-    private boolean hasNoArguments() {
-        args.size() == 0
+    private boolean hasHelpSwitch(args) {
+        firstArgument(args) in ['-h', '--help']
     }
 
-    private boolean hasHelpSwitch() {
-        args.size() == 1 && args[0] in ['-h', '--help']
+    private boolean hasVersionSwitch(args) {
+        firstArgument(args) in ['-v', '--version']
     }
 
-    private boolean hasVersionSwitch() {
-        args.size() == 1 && args[0] in ['-v', '--version']
-    }
-
-    /**
-     * Returns {@link File} if it exists and is a file
-     */
-    private File buildFile(String name, Closure onNotFile) {
-        def f = new File(name)
-        f.isFile() ? f : onNotFile(name)
+    private String firstArgument(args) {
+        args.size() == 1 ? args[0] : null
     }
 
 }

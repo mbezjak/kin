@@ -13,7 +13,7 @@ class Job {
 
     final String name
     boolean producesConfig = true
-    String template = null
+    String template        = null
     final List<String> inheritFromParents = []
     final Map<String, Object> traits      = [:]
 

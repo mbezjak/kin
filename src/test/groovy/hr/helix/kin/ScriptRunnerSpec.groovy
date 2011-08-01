@@ -2,16 +2,13 @@ package hr.helix.kin
 
 import spock.lang.*
 
-class ShellFactorySpec extends Specification {
+class ScriptRunnerSpec extends Specification {
 
-    def factory = new ShellFactory()
+    def runner = new ScriptRunner()
 
-    def "create should return groovy shell that can parse DSL script"() {
-        given:
-        def shell = factory.create(this.class.classLoader)
-
+    def "run should execute DSL script and return build model"() {
         when:
-        def script = shell.parse("""
+        def model = runner.run("""
         maven {
             producesConfig = false
             template = 'maven.tpl'
@@ -31,10 +28,9 @@ class ShellFactorySpec extends Specification {
             artifactId = 'bar-core'
         }
         """)
-        script.run()
 
         then:
-        def jobs = script._model.jobs
+        def jobs = model.jobs
         jobs.size() == 3
 
         and:

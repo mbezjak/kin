@@ -33,7 +33,7 @@ class Help {
               inherit 'maven'
               scm = 'http://example.com/git/foo'
               groupId = 'com.example.foo'
-              artifactId = 'foo'
+              artifactId = 'foo-all'
           }
 
           bar {
@@ -41,7 +41,7 @@ class Help {
               scm = 'http://example.com/git/bar'
               mavenVersion = '2.2.1' // overrides parent
               groupId = 'com.example.bar'
-              artifactId = 'bar'
+              artifactId = 'bar-core'
           }
 
           quux {

@@ -6,7 +6,7 @@ class BuildModelSpec extends Specification {
 
     def model = new BuildModel()
 
-    def "add should add job to model"() {
+    def "add should add job to a model"() {
         given:
         def name = 'foo'
         def job = new Job(name)

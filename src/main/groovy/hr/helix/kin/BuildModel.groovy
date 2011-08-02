@@ -14,6 +14,15 @@ class BuildModel {
         jobs[job.name] = job
     }
 
+    /**
+     * @return only config producing jobs
+     */
+    List<Job> producers() {
+        jobs.findResults { name, job ->
+            job.producesConfig ? job : null
+        }
+    }
+
     String toString() {
         jobs.collect { name, job ->
             job as String

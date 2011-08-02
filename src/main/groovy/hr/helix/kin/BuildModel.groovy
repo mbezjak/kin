@@ -48,6 +48,19 @@ class BuildModel {
         possible.findAll { it }
     }
 
+    /**
+     * @return traits for specified job; includes inherited traits
+     */
+    Map<String, Object> traits(String jobName) {
+        def traits = [jobName: jobName]
+        parents(jobName).reverse().each { parent ->
+            traits.putAll parent.traits
+        }
+        traits.putAll jobs[jobName].traits
+
+        traits
+    }
+
     String toString() {
         jobs.collect { name, job ->
             job as String

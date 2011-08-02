@@ -56,6 +56,24 @@ class BuildModelSpec extends Specification {
         model.templates(qux.name) == ['qux-maven.tpl', 'bar-simple.tpl', 'qux.tpl', 'bar.tpl', 'foo.tpl']
     }
 
+    def "traits should merge traits of inherited jobs"() {
+        given:
+        foo.a = 1
+        bar.b = 2
+        qux.c = 3
+        qux.a = 5
+        qux.inherit 'bar', 'foo'
+
+        model.add foo
+        model.add bar
+        model.add qux
+
+        expect:
+        model.traits(foo.name) == [jobName: 'foo', a:1]
+        model.traits(bar.name) == [jobName: 'bar', b:2]
+        model.traits(qux.name) == [jobName: 'qux', c:3, a:5, b:2]
+    }
+
     def "toString should generate valid dsl code"() {
         given:
         model.add foo

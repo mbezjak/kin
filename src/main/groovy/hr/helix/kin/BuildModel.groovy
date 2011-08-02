@@ -23,6 +23,31 @@ class BuildModel {
         }
     }
 
+    /**
+     * @return inherited (parent) jobs for specified job
+     */
+    List<Job> parents(String jobName) {
+        jobs[jobName].inheritFromParents.findResults { parent ->
+            jobs[parent]
+        }
+    }
+
+    /**
+     * @return all possible template names for specified job
+     */
+    List<String> templates(String jobName) {
+        def job = jobs[jobName]
+        def parents = parents(jobName)
+
+        def possible = []
+        possible << job.template
+        possible += parents*.template
+        possible << "${jobName}.tpl"
+        possible += parents*.name.collect { "${it}.tpl" }
+
+        possible.findAll { it }
+    }
+
     String toString() {
         jobs.collect { name, job ->
             job as String

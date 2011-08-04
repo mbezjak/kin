@@ -13,36 +13,25 @@ class ArgumentsProcessor {
     }
 
     /**
-     * Process <code>-h,--help,-v,--version<code> command line switches.
+     * Handle invalid arguments and <code>-h,--help,-v,--version<code> command
+     * line switches.
      * 
      * @param args command line arguments
-     * @return given build file name
      */
-    String process(String[] args) {
-        printHelpAndExitIfNeeded args
-        printVersionAndExitIfNeeded args
-
-        firstArgument args
-    }
-
-    private void printHelpAndExitIfNeeded(args) {
-        if (hasHelpSwitch(args) || args.size() > 1) {
+    void process(String[] args) {
+        if (hasVersionSwitch(args)) {
+            op.printVersionAndExit()
+        } else if (hasHelpSwitch(args) || args.size() > 0) {
             op.printHelpAndExit()
         }
     }
 
-    private void printVersionAndExitIfNeeded(args) {
-        if (hasVersionSwitch(args)) {
-            op.printVersionAndExit()
-        }
+    private boolean hasVersionSwitch(args) {
+        firstArgument(args) in ['-v', '--version']
     }
 
     private boolean hasHelpSwitch(args) {
         firstArgument(args) in ['-h', '--help']
-    }
-
-    private boolean hasVersionSwitch(args) {
-        firstArgument(args) in ['-v', '--version']
     }
 
     private String firstArgument(args) {

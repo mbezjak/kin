@@ -15,13 +15,24 @@ class Help {
         """\
         kin - jenkins/hudson job configuration generator
 
-        USAGE: kin [option] [build_file]
+        USAGE: kin [option]
 
         -h, --help      Shows this help message
         -v, --version   Shows project version
-        build_file      Specifies build file. Default value is 'build.kin'
 
-        Example build.kin:
+        Build file is always searched in current working directory under name
+        'build.kin'. Output is written to 'build' directory in current working
+        directory.
+
+        RUN EXAMPLE:
+
+          \$ ls
+          build.kin kin.jar maven.tpl
+          \$ java -jar kin.jar
+          \$ ls
+          build build.kin kin.jar maven.tpl
+
+        EXAMPLE BUILD FILE (build.kin):
 
           maven {
               producesConfig = false

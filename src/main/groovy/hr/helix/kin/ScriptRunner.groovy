@@ -8,8 +8,8 @@ import org.codehaus.groovy.control.CompilerConfiguration
  */
 class ScriptRunner {
 
-    BuildModel run(String input) {
-        def script = createShell().parse(input)
+    BuildModel run(String dsl) {
+        def script = createShell().parse(dsl)
         script.run()
         script._model
     }

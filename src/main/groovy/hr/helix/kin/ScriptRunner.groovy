@@ -8,12 +8,10 @@ import org.codehaus.groovy.control.CompilerConfiguration
  */
 class ScriptRunner {
 
-    BuildModel run(File file) {
-        runBuildModelScript file
-    }
-
-    BuildModel run(String script) {
-        runBuildModelScript script
+    BuildModel run(String input) {
+        def script = createShell().parse(input)
+        script.run()
+        script._model
     }
 
     /**
@@ -24,12 +22,6 @@ class ScriptRunner {
         compiler.scriptBaseClass = BuildModelScript.canonicalName
 
         new GroovyShell(this.class.classLoader, new Binding(), compiler)
-    }
-
-    private BuildModel runBuildModelScript(input) {
-        def script = createShell().parse(input)
-        script.run()
-        script._model
     }
 
 }

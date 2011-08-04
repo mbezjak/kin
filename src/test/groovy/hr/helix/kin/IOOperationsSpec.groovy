@@ -1,5 +1,7 @@
-package hr.helix.kin.cmd
+package hr.helix.kin
 
+import hr.helix.kin.IOOperations;
+import hr.helix.kin.Terminal;
 import spock.lang.*
 
 class IOOperationsSpec extends Specification {

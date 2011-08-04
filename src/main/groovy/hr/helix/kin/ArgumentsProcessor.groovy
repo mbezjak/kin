@@ -1,4 +1,4 @@
-package hr.helix.kin.cmd
+package hr.helix.kin
 
 /**
  * @author Miro Bezjak

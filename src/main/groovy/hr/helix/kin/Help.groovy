@@ -1,4 +1,4 @@
-package hr.helix.kin.cmd
+package hr.helix.kin
 
 /**
  * Provides help and version information.

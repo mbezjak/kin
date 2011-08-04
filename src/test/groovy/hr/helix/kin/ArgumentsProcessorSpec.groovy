@@ -1,5 +1,7 @@
-package hr.helix.kin.cmd
+package hr.helix.kin
 
+import hr.helix.kin.ArgumentsProcessor;
+import hr.helix.kin.Terminal;
 import spock.lang.*
 
 class ArgumentsProcessorSpec extends Specification {

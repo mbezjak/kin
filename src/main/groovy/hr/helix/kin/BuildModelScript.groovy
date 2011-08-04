@@ -4,7 +4,7 @@ package hr.helix.kin
  * Script allows writing DSL code.
  * 
  * @author Miro Bezjak
- * @since 1.0
+ * @since 0.1
  */
 abstract class BuildModelScript extends Script {
 

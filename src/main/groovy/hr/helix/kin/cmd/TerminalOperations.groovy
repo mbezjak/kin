@@ -4,7 +4,7 @@ package hr.helix.kin.cmd
  * Common operations on command line.
  * 
  * @author Miro Bezjak
- * @since 1.0
+ * @since 0.1
  */
 class TerminalOperations {
 

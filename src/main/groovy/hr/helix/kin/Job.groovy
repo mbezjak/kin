@@ -6,7 +6,7 @@ import groovy.transform.EqualsAndHashCode
  * Model for job parameters.
  * 
  * @author Miro Bezjak
- * @since 1.0
+ * @since 0.1
  */
 @EqualsAndHashCode
 class Job {

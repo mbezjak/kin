@@ -4,7 +4,7 @@ package hr.helix.kin
  * Contains all jobs defined in build file.
  * 
  * @author Miro Bezjak
- * @since 1.0
+ * @since 0.1
  */
 class BuildModel {
 

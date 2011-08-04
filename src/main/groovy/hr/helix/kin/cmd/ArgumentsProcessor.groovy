@@ -6,10 +6,10 @@ package hr.helix.kin.cmd
  */
 class ArgumentsProcessor {
 
-    private final TerminalOperations op
+    private final Terminal terminal
 
-    ArgumentsProcessor(TerminalOperations op) {
-        this.op = op
+    ArgumentsProcessor(Terminal terminal) {
+        this.terminal = terminal
     }
 
     /**
@@ -20,9 +20,9 @@ class ArgumentsProcessor {
      */
     void process(String[] args) {
         if (hasVersionSwitch(args)) {
-            op.printVersionAndExit()
+            terminal.printVersionAndExit()
         } else if (hasHelpSwitch(args) || args.size() > 0) {
-            op.printHelpAndExit()
+            terminal.printHelpAndExit()
         }
     }
 

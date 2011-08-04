@@ -4,7 +4,7 @@ import spock.lang.*
 
 class IOOperationsSpec extends Specification {
 
-    def terminal = Mock(TerminalOperations)
+    def terminal = Mock(Terminal)
     def op = new IOOperations(terminal)
 
     def "getBuildFileText should report and exit on no build file"() {

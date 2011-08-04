@@ -6,7 +6,7 @@ package hr.helix.kin.cmd
  * @author Miro Bezjak
  * @since 0.1
  */
-class TerminalOperations {
+class Terminal {
 
     static final int EXIT_CODE_HELP    = 1
     static final int EXIT_CODE_VERSION = 2

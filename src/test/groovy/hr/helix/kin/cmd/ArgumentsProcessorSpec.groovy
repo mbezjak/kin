@@ -4,8 +4,8 @@ import spock.lang.*
 
 class ArgumentsProcessorSpec extends Specification {
 
-    def op = Mock(TerminalOperations)
-    def processor = new ArgumentsProcessor(op)
+    def terminal = Mock(Terminal)
+    def processor = new ArgumentsProcessor(terminal)
 
     @Unroll({ "process should print version and exit on $version switch" })
     def "process should print version and exit on version switch"() {
@@ -13,7 +13,7 @@ class ArgumentsProcessorSpec extends Specification {
         processor.process version
 
         then:
-        1 * op.printVersionAndExit()
+        1 * terminal.printVersionAndExit()
 
         where:
         version << ['-v', '--version']
@@ -25,7 +25,7 @@ class ArgumentsProcessorSpec extends Specification {
         processor.process help
 
         then:
-        1 * op.printHelpAndExit()
+        1 * terminal.printHelpAndExit()
 
         where:
         help << ['-h', '--help']
@@ -36,7 +36,7 @@ class ArgumentsProcessorSpec extends Specification {
         processor.process 'foo'
 
         then:
-        1 * op.printHelpAndExit()
+        1 * terminal.printHelpAndExit()
     }
 
 }

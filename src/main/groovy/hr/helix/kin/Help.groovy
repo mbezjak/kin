@@ -22,7 +22,7 @@ class Help {
 
         Build file is always searched in current working directory under name
         'build.kin'. Output is written to 'build' directory in current working
-        directory.
+        directory. Build file and all templates are read in 'UTF-8' encoding.
 
         RUN EXAMPLE:
 

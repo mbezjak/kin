@@ -2,6 +2,7 @@ package hr.helix.kin
 
 def terminal = new Terminal()
 def arguments = new CommandLineArguments(args)
+def io = new IO()
 
 if (arguments.hasVersionSwitch()) {
     terminal.printVersionAndExit()
@@ -9,7 +10,11 @@ if (arguments.hasVersionSwitch()) {
     terminal.printHelpAndExit()
 }
 
-def dsl = new IOOperations(terminal).buildFileText
+def dsl = io.buildFileText
+if (dsl == null) {
+    terminal.printNoBuildFileAndExit IO.DEFAULT_BUILD_FILE
+}
+
 def model = new ScriptRunner().run(dsl)
 println model
 

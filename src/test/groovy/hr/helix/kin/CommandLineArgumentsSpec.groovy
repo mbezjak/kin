@@ -4,42 +4,47 @@ import spock.lang.*
 
 class CommandLineArgumentsSpec extends Specification {
 
-    @Unroll({ "arguments $args should result in hasHelpSwitch = $hasHelpSwitch" })
-    def "hasHelpSwitch return true if arguments has help switch"() {
+    @Unroll({ "hasHelpSwitch should return true for argument $arg" })
+    def "hasHelpSwitch should return true if first argument is help switch"() {
         given:
-        def arguments = new CommandLineArguments(args)
+        def arguments = new CommandLineArguments([arg]as String[])
 
         expect:
-        arguments.hasHelpSwitch() == hasHelpSwitch
+        arguments.hasHelpSwitch()
 
         where:
-        args                   | hasHelpSwitch
-        ['-h']as String[]     | true
-        ['--help']as String[] | true
-        ['foo']as String[]    | false
+        arg << ['-h', '--help']
     }
 
-    @Unroll({ "arguments $args should result in hasVersionSwitch = $hasVersionSwitch" })
-    def "hasVersionSwitch return true if arguments has version switch"() {
+    @Unroll({ "hasVersionSwitch should retrun true for argument $arg" })
+    def "hasVersionSwitch should return true if first argument is version"() {
         given:
-        def arguments = new CommandLineArguments(args)
+        def arguments = new CommandLineArguments([arg]as String[])
 
         expect:
-        arguments.hasVersionSwitch() == hasVersionSwitch
+        arguments.hasVersionSwitch()
 
         where:
-        args                      | hasVersionSwitch
-        ['-v']as String[]        | true
-        ['--version']as String[] | true
-        ['foo']as String[]       | false
+        arg << ['-v', '--version']
     }
 
+    @Unroll({ "isInvalid should return $invalid on $args" })
     def "isInvalid should return true on invalid arguments"() {
         given:
-        def arguments = new CommandLineArguments(['foo'] as String[])
+        def arguments = new CommandLineArguments(args as String[])
 
         expect:
-        arguments.invalid
+        arguments.invalid == invalid
+
+        where:
+        args          | invalid
+        ['-h']        | false
+        ['--help']    | false
+        ['-v']        | false
+        ['--version'] | false
+        ['foo']       | true
+        ['-h', 'foo'] | true
+        ['-v', 'bar'] | true
     }
 
 }

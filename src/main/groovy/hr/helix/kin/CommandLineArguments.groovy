@@ -16,18 +16,18 @@ class CommandLineArguments {
     }
 
     boolean hasHelpSwitch() {
-        firstArgument(args) in ['-h', '--help']
+        firstArgument() in ['-h', '--help']
     }
 
     boolean hasVersionSwitch() {
-        firstArgument(args) in ['-v', '--version']
+        firstArgument() in ['-v', '--version']
     }
 
     boolean isInvalid() {
         !hasHelpSwitch() && !hasVersionSwitch() && args.size() > 0
     }
 
-    private String firstArgument(args) {
+    private String firstArgument() {
         args.size() == 1 ? args[0] : null
     }
 

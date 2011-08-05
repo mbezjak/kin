@@ -24,7 +24,7 @@ class Terminal {
      * @param name build file name
      */
     void printNoBuildFileAndExit(String name) {
-        error "$name doesn't exist of is not a file!", EXIT_CODE_NO_BUILD_FILE
+        error "$name doesn't exist or is not a file!", EXIT_CODE_NO_BUILD_FILE
     }
 
     void error(String message, int exitCode) {

@@ -1,7 +1,13 @@
 package hr.helix.kin
 
 def terminal = new Terminal()
-new ArgumentsProcessor(terminal).process(args)
+def arguments = new CommandLineArguments(args)
+
+if (arguments.hasVersionSwitch()) {
+    terminal.printVersionAndExit()
+} else if (arguments.hasHelpSwitch() || arguments.invalid) {
+    terminal.printHelpAndExit()
+}
 
 def dsl = new IOOperations(terminal).buildFileText
 def model = new ScriptRunner().run(dsl)

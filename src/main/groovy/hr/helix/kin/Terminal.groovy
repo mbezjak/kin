@@ -1,7 +1,7 @@
 package hr.helix.kin
 
 /**
- * Common operations on command line.
+ * Provides methods related to terminal (printing and exiting).
  * 
  * @author Miro Bezjak
  * @since 0.1

@@ -15,7 +15,7 @@ class Help {
         """\
         kin - jenkins/hudson job configuration generator
 
-        USAGE: kin [option]
+        USAGE: java -jar kin.jar [option]
 
         -h, --help      Shows this help message
         -v, --version   Shows project version

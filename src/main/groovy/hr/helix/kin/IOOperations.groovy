@@ -5,6 +5,9 @@ package hr.helix.kin
  * @since 0.1
  */
 class IOOperations {
+    /*
+     * NOTE: when changing DEFAULT_* constants change helpInfo in Help as well.
+     */
 
     static final String DEFAULT_BUILD_FILE = 'build.kin'
     static final String DEFAULT_ENCODING   = 'utf-8'

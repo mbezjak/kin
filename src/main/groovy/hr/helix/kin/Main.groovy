@@ -3,6 +3,7 @@ package hr.helix.kin
 def terminal = new Terminal()
 def arguments = new CommandLineArguments(args)
 def io = new IO()
+def runner = new hr.helix.kin.script.Runner()
 
 if (arguments.hasVersionSwitch()) {
     terminal.printVersionAndExit()
@@ -15,8 +16,7 @@ if (dsl == null) {
     terminal.printNoBuildFileAndExit IO.DEFAULT_BUILD_FILE
 }
 
-def build = new hr.helix.kin.script.Runner().run(dsl)
-println build
+def build = runner.run(dsl)
 
 def file = {
     new File(it).isFile() ? new File(it) : null

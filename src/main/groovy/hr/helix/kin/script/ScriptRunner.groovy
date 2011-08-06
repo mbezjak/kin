@@ -1,4 +1,4 @@
-package hr.helix.kin
+package hr.helix.kin.script
 
 import hr.helix.kin.model.Build
 

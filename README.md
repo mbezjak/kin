@@ -53,14 +53,13 @@ There is no installation procedure. Simply download latest
 Just Java 6. Everything else is bundled in jar itself.
 
 ## Flexibility
-
 Remember that `build.kin` is powered by very simple DSL. Underneath all that is
 still [groovy](http://groovy.codehaus.org). Unlike `*.properties` or `*.ini`
 files when writing `build.kin` you have whole programming language to work with.
 Templates are processed by
 [SimpleTemplateEngine](http://groovy.codehaus.org/api/groovy/text/SimpleTemplateEngine.html)
-- so groovy again. This gives you a great deal of flexibility when creating and
-building templates.
+- so groovy again. This gives you a great deal of flexibility when creating
+templates and building job configurations.
 
 ## Source code
 Source code is available at github: https://github.com/mbezjak/kin

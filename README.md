@@ -1,3 +1,5 @@
+Still unfinished!
+
 # kin
 jenkins/hudson job configuration generator
 
@@ -33,7 +35,7 @@ Manually synchronizing configuration across all projects is a waste of time. By
 using `kin` you can create templates that are used across projects while
 specifying only those properties that differ.
 
-## Example
+## Example usage
 
     # show help
     $ java -jar kin.jar --help
@@ -51,6 +53,108 @@ There is no installation procedure. Simply download latest
 
 ## Required dependencies
 Just Java 6. Everything else is bundled in jar itself.
+
+## Build process
+In order to simplify configuration process `kin` uses the fact that
+jenkins/hudson store their job configuration in XML file. So when you create new
+job named `foo` via web interface jenkins stores job configuration in
+`$JENKINS_HOME/jobs/foo/config.xml` file. `$JENKINS_HOME` location can vary. For
+jenkins installed by DEB package on Ubuntu it's `/var/lib/jenkins`. Running
+jenkins standalone uses `$HOME/.jenkins`. More information on [jenkins wiki
+page](https://wiki.jenkins-ci.org/display/JENKINS/Administering+Jenkins). The
+same rule applies for hudson aswell.
+
+To create jenkins/hudson job configuration via `kin` you need to write
+`build.kin` file and create necessary templates. Usually one per project type
+(ant, maven, gradle, grails, etc.) though that is completely up to you.
+
+## Creating job templates
+Easiest way to create a template is to use jenkins/hudson web interface. Simply
+create a new job and configure it the way you'd like. Afterwards copy job
+configuration into `*.tpl` file. For example, for maven project named `foo` copy
+`$JENKINS_HOME/jobs/foo/config.xml` into `maven.tpl`. Now edit template by
+replacing variable configuration with `$name` properties. It will make more
+sense in example section.
+
+## build.kin
+Simple DSL is setup to support `build.kin` file. It looks like this:
+
+    foo { // <- project name
+        template = 'maven.tpl'
+        mavenVersion = '3.0.3'
+        scm = 'http://acme.com/git/foo'
+        groupId = 'com.acme.foo'
+        artifactId = 'foo'
+    }
+
+To share common properties across job configurations:
+
+    maven {
+        // doesn't produce jenkins/hudson job configuration but is only used
+        // to share common configuration across jobs
+        producesConfig = false
+        template = 'maven.tpl' // this is the default
+        mavenVersion = '3.0.3'
+    }
+
+    foo {
+        inherit 'maven'
+        scm = 'http://acme.com/git/foo'
+        groupId = 'com.acme.foo'
+        artifactId = 'foo'
+    }
+
+    bar {
+        inherit 'maven'
+        scm = 'http://acme.com/git/bar'
+        groupId = 'com.acme.bar'
+        artifactId = 'bar'
+    }
+
+Remember that groovy is underneath `build.kin` therefor we could write:
+
+    maven {
+        producesConfig = false
+        mavenVersion = '3.0.3'
+    }
+
+    def mavenProject = { name ->
+        return {
+            inherit 'maven'
+            scm = "http://acme.com/git/$name"
+            groupId = "com.acme.$name"
+            artifactId = name
+        }
+    }
+
+    foo mavenProject('foo')
+    bar mavenProject('bar')
+
+Or you can use `addJob` method as part of API that
+`hr.helix.kin.script.BuildScript` provides:
+
+    maven {
+        producesConfig = false
+        mavenVersion = '3.0.3'
+    }
+
+    def mavenProject = { name ->
+        addJob name, {
+            inherit 'maven'
+            scm = "http://acme.com/git/$name"
+            groupId = "com.acme.$name"
+            artifactId = name
+        }
+    }
+
+    mavenProject 'foo'
+    mavenProject 'bar'
+
+## Example
+
+
+## How to install created job configurations
+
 
 ## Flexibility
 Remember that `build.kin` is powered by very simple DSL. Underneath all that is

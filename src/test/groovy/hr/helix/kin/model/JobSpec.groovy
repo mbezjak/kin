@@ -1,4 +1,4 @@
-package hr.helix.kin
+package hr.helix.kin.model
 
 import spock.lang.*
 
@@ -16,9 +16,7 @@ class JobSpec extends Specification {
 
     def "should allow single inheritance"() {
         when:
-        job.with {
-            inherit 'foo'
-        }
+        job.inherit 'foo'
 
         then:
         job.inheritFromParents == ['foo']
@@ -37,9 +35,7 @@ class JobSpec extends Specification {
 
     def "should allow multiple inheritance by specifying array"() {
         when:
-        job.with {
-            inherit 'foo', 'bar'
-        }
+        job.inherit 'foo', 'bar'
 
         then:
         job.inheritFromParents == ['foo', 'bar']
@@ -47,9 +43,7 @@ class JobSpec extends Specification {
 
     def "should allow multiple inheritance by specifying list"() {
         when:
-        job.with {
-            inherit(['foo', 'bar'])
-        }
+        job.inherit(['foo', 'bar'])
 
         then:
         job.inheritFromParents == ['foo', 'bar']

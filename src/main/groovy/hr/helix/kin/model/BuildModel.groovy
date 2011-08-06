@@ -1,4 +1,4 @@
-package hr.helix.kin
+package hr.helix.kin.model
 
 /**
  * Contains all jobs defined in build file.

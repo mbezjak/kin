@@ -1,9 +1,9 @@
-package hr.helix.kin
+package hr.helix.kin.model
 
 import groovy.transform.EqualsAndHashCode
 
 /**
- * Model for job parameters.
+ * Provides job parameters used when building actual configuration.
  * 
  * @author Miro Bezjak
  * @since 0.1

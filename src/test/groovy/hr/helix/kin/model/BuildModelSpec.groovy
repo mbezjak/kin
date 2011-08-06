@@ -1,4 +1,4 @@
-package hr.helix.kin
+package hr.helix.kin.model
 
 import spock.lang.*
 

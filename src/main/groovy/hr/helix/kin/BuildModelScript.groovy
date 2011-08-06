@@ -1,5 +1,8 @@
 package hr.helix.kin
 
+import hr.helix.kin.model.BuildModel
+import hr.helix.kin.model.Job
+
 /**
  * Script allows writing DSL code.
  * 

@@ -1,5 +1,7 @@
 package hr.helix.kin
 
+import hr.helix.kin.model.BuildModel
+
 import org.codehaus.groovy.control.CompilerConfiguration
 
 /**

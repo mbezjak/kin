@@ -24,4 +24,13 @@ jar {
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    from 'LICENSE'
+}
+
+task dist(type: Zip) {
+    dependsOn jar
+    from jar.archivePath
+    from 'LICENSE'
+    from 'Changelog.md'
+    from 'README.md'
 }

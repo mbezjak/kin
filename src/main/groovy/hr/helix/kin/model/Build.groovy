@@ -6,7 +6,7 @@ package hr.helix.kin.model
  * @author Miro Bezjak
  * @since 0.1
  */
-class BuildModel {
+class Build {
 
     final Map<String, Job> jobs = [:]
 

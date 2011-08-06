@@ -1,6 +1,6 @@
 package hr.helix.kin
 
-import hr.helix.kin.model.BuildModel
+import hr.helix.kin.model.Build
 
 import org.codehaus.groovy.control.CompilerConfiguration
 
@@ -10,10 +10,10 @@ import org.codehaus.groovy.control.CompilerConfiguration
  */
 class ScriptRunner {
 
-    BuildModel run(String dsl) {
+    Build run(String dsl) {
         def script = createShell().parse(dsl)
         script.run()
-        script._model
+        script._build
     }
 
     /**
@@ -21,7 +21,7 @@ class ScriptRunner {
      */
     GroovyShell createShell() {
         def compiler = new CompilerConfiguration()
-        compiler.scriptBaseClass = BuildModelScript.canonicalName
+        compiler.scriptBaseClass = BuildScript.canonicalName
 
         new GroovyShell(this.class.classLoader, new Binding(), compiler)
     }

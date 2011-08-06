@@ -15,19 +15,19 @@ if (dsl == null) {
     terminal.printNoBuildFileAndExit IO.DEFAULT_BUILD_FILE
 }
 
-def model = new ScriptRunner().run(dsl)
-println model
+def build = new ScriptRunner().run(dsl)
+println build
 
 def file = {
     new File(it).isFile() ? new File(it) : null
 }
 
 def engine = new groovy.text.SimpleTemplateEngine()
-model.producers().each { job ->
-    println model.templates(job.name)
-    def template = model.templates(job.name).findResult file
+build.producers().each { job ->
+    println build.templates(job.name)
+    def template = build.templates(job.name).findResult file
     println "template = $template"
-    def traits = model.traits(job.name)
+    def traits = build.traits(job.name)
     println "traits = $traits"
 
     def config = engine.createTemplate(template).make(traits)

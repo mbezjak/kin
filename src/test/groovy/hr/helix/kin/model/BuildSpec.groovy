@@ -2,42 +2,42 @@ package hr.helix.kin.model
 
 import spock.lang.*
 
-class BuildModelSpec extends Specification {
+class BuildSpec extends Specification {
 
-    def model = new BuildModel()
+    def build = new Build()
     def foo = new Job('foo')
     def bar = new Job('bar')
     def qux = new Job('qux')
 
-    def "add should add job to a model"() {
+    def "add should add job to build"() {
         when:
-        model.add foo
+        build.add foo
 
         then:
-        model.jobs[foo.name] == foo 
+        build.jobs[foo.name] == foo 
     }
 
     def "producers should return only config producing jobs"() {
         given:
         qux.producesConfig = false
-        model.add foo
-        model.add bar
-        model.add qux
+        build.add foo
+        build.add bar
+        build.add qux
 
         expect:
-        model.producers() == [foo, bar]
+        build.producers() == [foo, bar]
     }
 
     def "parents should return all parents of specified job"() {
         given:
         qux.inherit 'foo', 'notexists'
 
-        model.add foo
-        model.add bar
-        model.add qux
+        build.add foo
+        build.add bar
+        build.add qux
 
         expect:
-        model.parents(qux.name) == [foo]
+        build.parents(qux.name) == [foo]
     }
 
     def "templates should return all possible templates for specified job"() {
@@ -46,14 +46,14 @@ class BuildModelSpec extends Specification {
         qux.template = 'qux-maven.tpl'
         qux.inherit 'bar', 'foo'
 
-        model.add foo
-        model.add bar
-        model.add qux
+        build.add foo
+        build.add bar
+        build.add qux
 
         expect:
-        model.templates(foo.name) == ['foo.tpl']
-        model.templates(bar.name) == ['bar-simple.tpl', 'bar.tpl']
-        model.templates(qux.name) == ['qux-maven.tpl', 'bar-simple.tpl', 'qux.tpl', 'bar.tpl', 'foo.tpl']
+        build.templates(foo.name) == ['foo.tpl']
+        build.templates(bar.name) == ['bar-simple.tpl', 'bar.tpl']
+        build.templates(qux.name) == ['qux-maven.tpl', 'bar-simple.tpl', 'qux.tpl', 'bar.tpl', 'foo.tpl']
     }
 
     def "traits should merge traits of inherited jobs"() {
@@ -64,20 +64,20 @@ class BuildModelSpec extends Specification {
         qux.a = 5
         qux.inherit 'bar', 'foo'
 
-        model.add foo
-        model.add bar
-        model.add qux
+        build.add foo
+        build.add bar
+        build.add qux
 
         expect:
-        model.traits(foo.name) == [jobName: 'foo', a:1]
-        model.traits(bar.name) == [jobName: 'bar', b:2]
-        model.traits(qux.name) == [jobName: 'qux', c:3, a:5, b:2]
+        build.traits(foo.name) == [jobName: 'foo', a:1]
+        build.traits(bar.name) == [jobName: 'bar', b:2]
+        build.traits(qux.name) == [jobName: 'qux', c:3, a:5, b:2]
     }
 
     def "toString should generate valid dsl code"() {
         given:
-        model.add foo
-        model.add bar
+        build.add foo
+        build.add bar
 
         def expected = """\
         foo {
@@ -93,7 +93,7 @@ class BuildModelSpec extends Specification {
         }""".stripIndent()
 
         expect:
-        model.toString() == expected
+        build.toString() == expected
     }
 
 }

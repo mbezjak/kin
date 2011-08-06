@@ -3,7 +3,7 @@ Things to do when releasing:
  * Mention changes in `Changelog.md`
  * Update version in `build.gradle`
  * Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
- * `gradle build` and upload `build/libs/kin-version.jar` to
+ * `gradle build` and upload `build/libs/kin-$version.jar` to
    `https://github.com/mbezjak/kin/downloads`
 
 git work:

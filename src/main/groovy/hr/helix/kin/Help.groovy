@@ -42,14 +42,14 @@ class Help {
 
           foo {
               inherit 'maven'
-              scm = 'http://example.com/git/foo'
+              scm = 'http://acme.com/git/foo'
               groupId = 'com.example.foo'
               artifactId = 'foo-all'
           }
 
           bar {
               inherit 'maven'
-              scm = 'http://example.com/git/bar'
+              scm = 'http://acme.com/git/bar'
               mavenVersion = '2.2.1' // overrides parent
               groupId = 'com.example.bar'
               artifactId = 'bar-core'
@@ -57,7 +57,7 @@ class Help {
 
           quux {
               template = 'grails.tpl'
-              scm = 'http://example.com/hg/quux'
+              scm = 'http://acme.com/hg/quux'
               grailsVersion = '1.3.7'
               deploy = true
           }

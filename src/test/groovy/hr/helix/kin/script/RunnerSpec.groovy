@@ -17,14 +17,14 @@ class RunnerSpec extends Specification {
 
         foo {
             inherit 'maven'
-            scm = 'http://example.com/git/foo'
+            scm = 'http://acme.com/git/foo'
             groupId = 'com.example.foo'
             artifactId = 'foo-all'
         }
 
         bar {
             inherit 'maven'
-            scm = 'http://example.com/git/bar'
+            scm = 'http://acme.com/git/bar'
             mavenVersion = '2.2.1' // overrides parent
             groupId = 'com.example.bar'
             artifactId = 'bar-core'
@@ -32,7 +32,7 @@ class RunnerSpec extends Specification {
 
         quux {
             template = 'grails.tpl'
-            scm = 'http://example.com/hg/quux'
+            scm = 'http://acme.com/hg/quux'
             grailsVersion = '1.3.7'
             deploy = true
         }
@@ -49,20 +49,20 @@ class RunnerSpec extends Specification {
 
         and:
         jobs.foo.inheritFromParents == ['maven']
-        jobs.foo.scm == 'http://example.com/git/foo'
+        jobs.foo.scm == 'http://acme.com/git/foo'
         jobs.foo.groupId == 'com.example.foo'
         jobs.foo.artifactId == 'foo-all'
 
         and:
         jobs.bar.inheritFromParents == ['maven']
-        jobs.bar.scm == 'http://example.com/git/bar'
+        jobs.bar.scm == 'http://acme.com/git/bar'
         jobs.bar.mavenVersion == '2.2.1'
         jobs.bar.groupId == 'com.example.bar'
         jobs.bar.artifactId == 'bar-core'
 
         and:
         jobs.quux.template == 'grails.tpl'
-        jobs.quux.scm == 'http://example.com/hg/quux'
+        jobs.quux.scm == 'http://acme.com/hg/quux'
         jobs.quux.grailsVersion == '1.3.7'
         jobs.quux.deploy == true
     }

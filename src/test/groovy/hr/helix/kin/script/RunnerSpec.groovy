@@ -67,4 +67,22 @@ class RunnerSpec extends Specification {
         jobs.quux.deploy == true
     }
 
+    def "run should allow calling addJob method"() {
+        when:
+        def build = runner.run("""
+        addJob 'foo', {
+            a = 1
+            b = 2
+        }
+        """)
+
+        then:
+        def jobs = build.jobs
+        jobs.size() == 1
+
+        and:
+        jobs.foo.a == 1
+        jobs.foo.b == 2
+    }
+
 }

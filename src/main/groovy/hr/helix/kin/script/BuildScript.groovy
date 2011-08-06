@@ -16,12 +16,17 @@ abstract class BuildScript extends Script {
 
     def methodMissing(String name, args) {
         if (args.size() == 1 && args[0] instanceof Closure) {
-            def job = new Job(name)
-            job.with args[0]
-            _build.add job
+            addJob name, args[0]
         } else {
             throw new MissingMethodException(name, delegate, args)
         }
+    }
+
+    Job addJob(String name, Closure configurer) {
+        def job = new Job(name)
+        job.with configurer
+        _build.add job
+        job
     }
 
 }

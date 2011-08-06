@@ -29,5 +29,8 @@ build.producers().each { job ->
 
     def traits = build.traits(name)
     def config = engine.createTemplate(template).make(traits)
-    io.writeConfig config, name
+
+    def configFile = io.configFile(name)
+    io.writeConfig config, configFile
+    terminal.printJobCreated configFile.absolutePath
 }

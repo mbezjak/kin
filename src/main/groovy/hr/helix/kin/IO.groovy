@@ -35,16 +35,14 @@ class IO {
         }
     }
 
-    File mkConfigDir(String jobName) {
+    File configFile(String jobName) {
         def dir = new File(DEFAULT_BUILD_DIR, jobName)
-        dir.mkdirs()
-        dir
+        new File(dir, DEFAULT_CONFIG_FILE)
     }
 
-    void writeConfig(Writable config, String jobName) {
-        def dir = mkConfigDir(jobName)
-        def file = new File(dir, DEFAULT_CONFIG_FILE)
-        def writer = file.newWriter(DEFAULT_ENCODING)
+    void writeConfig(Writable config, File configFile) {
+        configFile.parentFile.mkdirs()
+        def writer = configFile.newWriter(DEFAULT_ENCODING)
 
         try {
             config.writeTo writer

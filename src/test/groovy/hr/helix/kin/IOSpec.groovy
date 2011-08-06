@@ -45,23 +45,10 @@ class IOSpec extends Specification {
         qux.delete()
     }
 
-    def "mkConfigDir should create directory where config file will be written"() {
-        given:
-        def name = 'foo'
-
-        when:
-        io.mkConfigDir(name)
-
-        then:
-        new File(IO.DEFAULT_BUILD_DIR, name).isDirectory()
-
-        cleanup:
-        new File(IO.DEFAULT_BUILD_DIR, name).deleteDir()
-    }
-
     def "writeConfig should write config file to file system"() {
         given:
-        def name = 'foo'
+        def dir = new File('writeConfig-test')
+        def file = new File(dir, 'foo/config.xml')
         def text = 'simple text'
         def writable = new Writable() {
             Writer writeTo(Writer out) {
@@ -70,14 +57,13 @@ class IOSpec extends Specification {
         }
 
         when:
-        io.writeConfig writable, name
+        io.writeConfig writable, file
 
         then:
-        def dir = new File("${IO.DEFAULT_BUILD_DIR}/$name")
-        new File(dir, IO.DEFAULT_CONFIG_FILE).text == text
+        file.text == text
 
         cleanup:
-        new File(IO.DEFAULT_BUILD_DIR, name).deleteDir()
+        dir.deleteDir()
     }
 
 }

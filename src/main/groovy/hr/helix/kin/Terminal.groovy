@@ -36,6 +36,13 @@ class Terminal {
               EXIT_CODE_NO_TEMPLATE
     }
 
+    /**
+     * @param location where job configuration exists
+     */
+    void printJobCreated(String location) {
+        println location
+    }
+
     void error(String message, int exitCode) {
         System.err.println message
         System.exit exitCode

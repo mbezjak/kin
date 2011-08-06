@@ -1,21 +1,23 @@
 package hr.helix.kin
 
-def terminal = new Terminal()
 def arguments = new CommandLineArguments(args)
+if (arguments.hasVersionSwitch()) {
+    System.err.println Help.versionInfo
+    System.exit 1
+} else if (arguments.hasHelpSwitch() || arguments.invalid) {
+    System.err.println Help.helpInfo
+    System.exit 2
+}
+
+
 def io = new IO()
 def runner = new hr.helix.kin.script.Runner()
 def engine = new groovy.text.XmlTemplateEngine()
 
-
-if (arguments.hasVersionSwitch()) {
-    terminal.printVersionAndExit()
-} else if (arguments.hasHelpSwitch() || arguments.invalid) {
-    terminal.printHelpAndExit()
-}
-
 def dsl = io.buildFileText
 if (dsl == null) {
-    terminal.printNoBuildFileAndExit IO.DEFAULT_BUILD_FILE
+    System.err.println "${IO.DEFAULT_BUILD_FILE} doesn't exist or is not a file!"
+    System.exit 3
 }
 
 
@@ -25,8 +27,8 @@ build.producers().each { job ->
     def templates = build.templates(name)
     def template = io.findValidTemplate(templates)
     if (!template) {
-        terminal.printNoTemplateAndExit(name, templates)
-        // System.exited!
+        System.err.println "No template $templates for job '$name'!"
+        System.exit 4
     }
 
     def traits = build.traits(name)
@@ -34,5 +36,5 @@ build.producers().each { job ->
 
     def configFile = io.configFile(name)
     io.writeConfig config, configFile
-    terminal.printJobCreated configFile.absolutePath
+    println configFile.absolutePath
 }

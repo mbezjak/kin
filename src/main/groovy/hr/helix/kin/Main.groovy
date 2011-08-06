@@ -4,6 +4,7 @@ def terminal = new Terminal()
 def arguments = new CommandLineArguments(args)
 def io = new IO()
 def runner = new hr.helix.kin.script.Runner()
+def engine = new groovy.text.SimpleTemplateEngine()
 
 if (arguments.hasVersionSwitch()) {
     terminal.printVersionAndExit()
@@ -17,8 +18,6 @@ if (dsl == null) {
 }
 
 def build = runner.run(dsl)
-
-def engine = new groovy.text.SimpleTemplateEngine()
 build.producers().each { job ->
     def name = job.name
     def templates = build.templates(name)
@@ -28,12 +27,7 @@ build.producers().each { job ->
         // System.exited!
     }
 
-    println "template = $template"
     def traits = build.traits(name)
-    println "traits = $traits"
-
     def config = engine.createTemplate(template).make(traits)
-    def writer = new File("${name}.xml").newWriter('utf-8')
-    config.writeTo writer
-    writer.close()
+    io.writeConfig config, name
 }

@@ -18,14 +18,10 @@ if (dsl == null) {
 
 def build = runner.run(dsl)
 
-def file = {
-    new File(it).isFile() ? new File(it) : null
-}
-
 def engine = new groovy.text.SimpleTemplateEngine()
 build.producers().each { job ->
     println build.templates(job.name)
-    def template = build.templates(job.name).findResult file
+    def template = io.findValidTemplate(build.templates(job.name))
     println "template = $template"
     def traits = build.traits(job.name)
     println "traits = $traits"

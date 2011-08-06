@@ -24,4 +24,25 @@ class IOSpec extends Specification {
         build.delete()
     }
 
+    def "findValidTemplate should return null no valid template can be found"() {
+        expect:
+        io.findValidTemplate(['foo.tpl', 'bar.tpl', 'qux.tpl']) == null
+    }
+
+    def "findValidTemplate should return first template file that exists on a file system"() {
+        given:
+        def bar = new File('bar.tpl')
+        bar.mkdir()
+
+        def qux = new File('qux.tpl')
+        qux.createNewFile()
+
+        expect:
+        io.findValidTemplate(['foo.tpl', 'bar.tpl', 'qux.tpl']) == qux
+
+        cleanup:
+        bar.delete()
+        qux.delete()
+    }
+
 }

@@ -22,4 +22,15 @@ class IO {
         build.isFile() ? build.getText(DEFAULT_ENCODING) : null
     }
 
+    /**
+     * @param templateNames names of potential templates
+     * @return first template file that exists on a file system
+     */
+    File findValidTemplate(List<String> templateNames) {
+        templateNames.findResult { name ->
+            def template = new File(name)
+            template.isFile() ? template : null
+        }
+    }
+
 }

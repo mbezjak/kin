@@ -4,7 +4,8 @@ def terminal = new Terminal()
 def arguments = new CommandLineArguments(args)
 def io = new IO()
 def runner = new hr.helix.kin.script.Runner()
-def engine = new groovy.text.SimpleTemplateEngine()
+def engine = new groovy.text.XmlTemplateEngine()
+
 
 if (arguments.hasVersionSwitch()) {
     terminal.printVersionAndExit()
@@ -16,6 +17,7 @@ def dsl = io.buildFileText
 if (dsl == null) {
     terminal.printNoBuildFileAndExit IO.DEFAULT_BUILD_FILE
 }
+
 
 def build = runner.run(dsl)
 build.producers().each { job ->

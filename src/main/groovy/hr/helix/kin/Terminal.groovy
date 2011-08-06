@@ -11,6 +11,7 @@ class Terminal {
     static final int EXIT_CODE_HELP    = 1
     static final int EXIT_CODE_VERSION = 2
     static final int EXIT_CODE_NO_BUILD_FILE = 3
+    static final int EXIT_CODE_NO_TEMPLATE = 4
 
     void printHelpAndExit() {
         error Help.helpInfo, EXIT_CODE_HELP
@@ -25,6 +26,14 @@ class Terminal {
      */
     void printNoBuildFileAndExit(String name) {
         error "$name doesn't exist or is not a file!", EXIT_CODE_NO_BUILD_FILE
+    }
+
+    /**
+     * @param templateNames names of potential templates
+     */
+    void printNoTemplateAndExit(String jobName, List<String> templateNames) {
+        error "No template $templateNames for job '$jobName'!",
+              EXIT_CODE_NO_TEMPLATE
     }
 
     void error(String message, int exitCode) {

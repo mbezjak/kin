@@ -15,7 +15,7 @@ if (dsl == null) {
     terminal.printNoBuildFileAndExit IO.DEFAULT_BUILD_FILE
 }
 
-def build = new hr.helix.kin.script.ScriptRunner().run(dsl)
+def build = new hr.helix.kin.script.Runner().run(dsl)
 println build
 
 def file = {

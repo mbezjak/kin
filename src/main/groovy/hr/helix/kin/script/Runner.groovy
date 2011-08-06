@@ -5,10 +5,12 @@ import hr.helix.kin.model.Build
 import org.codehaus.groovy.control.CompilerConfiguration
 
 /**
+ * Provides ability to run DSL and return {@link Build} model.
+ * 
  * @author Miro Bezjak
  * @since 0.1
  */
-class ScriptRunner {
+class Runner {
 
     Build run(String dsl) {
         def script = createShell().parse(dsl)

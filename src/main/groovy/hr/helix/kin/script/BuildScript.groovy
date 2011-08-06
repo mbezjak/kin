@@ -4,7 +4,7 @@ import hr.helix.kin.model.Build
 import hr.helix.kin.model.Job
 
 /**
- * Script allows writing DSL code.
+ * Groovy script allows writing DSL code.
  * 
  * @author Miro Bezjak
  * @since 0.1

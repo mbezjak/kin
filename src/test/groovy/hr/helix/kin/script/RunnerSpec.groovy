@@ -2,13 +2,13 @@ package hr.helix.kin.script
 
 import spock.lang.*
 
-class ScriptRunnerSpec extends Specification {
+class RunnerSpec extends Specification {
 
-    def runner = new ScriptRunner()
+    def runner = new Runner()
 
     def "run should execute DSL script and return build model"() {
         when:
-        def model = runner.run("""
+        def build = runner.run("""
         maven {
             producesConfig = false
             template = 'maven.tpl'
@@ -39,7 +39,7 @@ class ScriptRunnerSpec extends Specification {
         """)
 
         then:
-        def jobs = model.jobs
+        def jobs = build.jobs
         jobs.size() == 4
 
         and:

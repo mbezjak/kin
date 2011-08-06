@@ -51,3 +51,9 @@ There is no installation procedure. Simply download latest
 
 ## Required dependencies
 Just Java 6. Everything else is bundled in jar itself.
+
+## Source code
+Source code is available at github: https://github.com/mbezjak/kin
+
+## License
+Project uses MIT license. Check LICENSE file for more info.

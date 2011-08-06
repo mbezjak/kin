@@ -14,7 +14,7 @@ class BuildSpec extends Specification {
         build.add foo
 
         then:
-        build.jobs[foo.name] == foo 
+        build.jobs == [(foo.name): foo] 
     }
 
     def "producers should return only config producing jobs"() {

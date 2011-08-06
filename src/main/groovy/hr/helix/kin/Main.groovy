@@ -12,7 +12,7 @@ if (arguments.hasVersionSwitch()) {
 
 def io = new IO()
 def runner = new hr.helix.kin.script.Runner()
-def engine = new groovy.text.XmlTemplateEngine()
+def engine = new groovy.text.SimpleTemplateEngine()
 
 def dsl = io.buildFileText
 if (dsl == null) {

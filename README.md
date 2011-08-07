@@ -1,5 +1,3 @@
-Documentation is still unfinished!
-
 # kin
 jenkins/hudson job configuration generator
 
@@ -225,7 +223,122 @@ respectively. Following classes are directly responsible for `build.kin` file:
  * `hr.helix.kin.model.Build`
 
 ## Walkthrough
+Suppose a `build.kin` file:
 
+```groovy
+gradle {
+    producesConfig = false
+    gradleVersion = '1.0-milestone-4'
+    task = 'build'
+}
+
+kin {
+    inherit 'gradle'
+    scm = 'https://github.com/mbezjak/kin'
+}
+
+foo {
+    inherit 'gradle'
+    scm = 'http://acme.com/git/foo'
+    task = 'jar'
+}
+
+bar {
+    inherit 'gradle'
+    gradleVersion = '0.9.2'
+    scm = 'http://acme.com/git/bar'
+}
+```
+
+`gradle.tpl` looks like:
+
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name></name>
+        <refspec></refspec>
+        <url>$scm</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>**</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir></relativeTargetDir>
+    <excludedRegions></excludedRegions>
+    <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <scmName></scmName>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>*/10 * * * *</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.gradle.Gradle>
+      <description></description>
+      <switches></switches>
+      <tasks>build</tasks>
+      <rootBuildScriptDir></rootBuildScriptDir>
+      <buildFile></buildFile>
+      <gradleName>$gradleVersion</gradleName>
+      <useWrapper>false</useWrapper>
+    </hudson.plugins.gradle.Gradle>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
+```
+
+After running `java -jar kin.jar` three job configurations (kin, foo, bar) are
+created: `build/kin/config.xml`, `build/foo/config.xml` and
+`build/bar/config.xml`. When building job configuration each `$name` property in
+`gradle.tpl` is replaced with actual property value specified in `build.kin`.
+
+`kin` job configuration:
+
+ * `$gradleVersion` is replaced with `1.0-milestone-4`
+ * `$scm` is replaced with `https://github.com/mbezjak/kin`
+ * `$task` is replaced with `build`
+
+`foo` job configuration:
+
+ * `$gradleVersion` is replaced with `1.0-milestone-4`
+ * `$scm` is replaced with `http://acme.com/git/foo`
+ * `$task` is replaced with `jar`
+
+`bar` job configuration:
+
+ * `$gradleVersion` is replaced with `0.9.2`
+ * `$scm` is replaced with `http://acme.com/git/bar`
+ * `$task` is replaced with `build`
 
 ## How to install created job configurations
 What to do after `kin` successfully creates jenkins/hudson job configurations?

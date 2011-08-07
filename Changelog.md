@@ -1,2 +1,2 @@
-# 2011-08-xx, Version: 0.1
+# 2011-08-07, Version: 0.1
  * initial public release

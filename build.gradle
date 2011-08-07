@@ -29,9 +29,15 @@ jar {
 }
 
 task dist(type: Zip) {
-    dependsOn jar
+    dependsOn jar, groovydoc
     from jar.archivePath
-    from 'LICENSE'
     from 'Changelog.md'
+    from 'LICENSE'
     from 'README.md'
+    into('docs/api') {
+        from "$buildDir/docs/groovydoc"
+    }
+    into('src') {
+        from 'src/main/groovy'
+    }
 }

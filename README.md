@@ -79,124 +79,142 @@ sense in walkthrough section.
 ## DSL exaplained (build.kin file)
 Simple DSL is setup to support `build.kin` file. It looks like this:
 
-    foo { // <- project name
-        template = 'maven.tpl'
-        mavenVersion = '3.0.3'
-        scm = 'http://acme.com/git/foo'
-        groupId = 'com.acme.foo'
-        artifactId = 'foo'
-    }
+```groovy
+foo { // <- project name
+    template = 'maven.tpl'
+    mavenVersion = '3.0.3'
+    scm = 'http://acme.com/git/foo'
+    groupId = 'com.acme.foo'
+    artifactId = 'foo'
+}
+```
 
 To share common properties across job configurations:
 
-    maven {
-        // doesn't produce jenkins/hudson job configuration but is only used
-        // to share common configuration across jobs
-        producesConfig = false
+```groovy
+maven {
+    // doesn't produce jenkins/hudson job configuration but is only used
+    // to share common configuration across jobs
+    producesConfig = false
 
-        template = 'maven.tpl' // this is the default
-        mavenVersion = '3.0.3'
-    }
+    template = 'maven.tpl' // this is the default
+    mavenVersion = '3.0.3'
+}
 
-    foo {
-        inherit 'maven'
-        scm = 'http://acme.com/git/foo'
-        groupId = 'com.acme.foo'
-        artifactId = 'foo'
-    }
+foo {
+    inherit 'maven'
+    scm = 'http://acme.com/git/foo'
+    groupId = 'com.acme.foo'
+    artifactId = 'foo'
+}
 
-    bar {
-        inherit 'maven'
-        scm = 'http://acme.com/git/bar'
-        groupId = 'com.acme.bar'
-        artifactId = 'bar'
-    }
+bar {
+    inherit 'maven'
+    scm = 'http://acme.com/git/bar'
+    groupId = 'com.acme.bar'
+    artifactId = 'bar'
+}
+```
 
 Underneath that DSL is groovy. Therefor we could write more groovy like code to
 reduce number of lines further:
 
-    maven {
-        producesConfig = false
-        mavenVersion = '3.0.3'
-    }
+```groovy
+maven {
+    producesConfig = false
+    mavenVersion = '3.0.3'
+}
 
-    def mavenProject = { name ->
-        return {
-            inherit 'maven'
-            scm = "http://acme.com/git/$name"
-            groupId = "com.acme.$name"
-            artifactId = name
-        }
+def mavenProject = { name ->
+    return {
+        inherit 'maven'
+        scm = "http://acme.com/git/$name"
+        groupId = "com.acme.$name"
+        artifactId = name
     }
+}
 
-    foo mavenProject('foo')
-    bar mavenProject('bar')
+foo mavenProject('foo')
+bar mavenProject('bar')
+```
 
 Or you can use `addJob` method as part of API that
 `hr.helix.kin.script.BuildScript` provides:
 
-    maven {
-        producesConfig = false
-        mavenVersion = '3.0.3'
-    }
+```groovy
+maven {
+    producesConfig = false
+    mavenVersion = '3.0.3'
+}
 
-    def mavenProject = { name ->
-        addJob name, {
-            inherit 'maven'
-            scm = "http://acme.com/git/$name"
-            groupId = "com.acme.$name"
-            artifactId = name
-        }
+def mavenProject = { name ->
+    addJob name, {
+        inherit 'maven'
+        scm = "http://acme.com/git/$name"
+        groupId = "com.acme.$name"
+        artifactId = name
     }
+}
 
-    mavenProject 'foo'
-    mavenProject 'bar'
+mavenProject 'foo'
+mavenProject 'bar'
+```
 
 ## API available in build.kin file
 You can step away from DSL if you want to. We've already seen `addJob` method
 available in `hr.helix.kin.script.BuildScript`. This block:
 
-    foo {
-        a = 1
-        b = 2
-    }
+```groovy
+foo {
+    a = 1
+    b = 2
+}
+```
 
 is equivalent to:
 
-    addJob 'foo', {
-        a = 1
-        b = 2
-    }
+```groovy
+addJob 'foo', {
+    a = 1
+    b = 2
+}
+```
 
 or:
 
-    addJob('foo') {
-        a = 1
-        b = 2
-    }
+```groovy
+addJob('foo') {
+    a = 1
+    b = 2
+}
+```
 
 `hr.helix.kin.model.Job` class provides `inherit` method. It can be used to
 specified job name from which to inherit parameters. In following example `foo`
 job inherits both `mavenVersion` and `groupId` properties.
 
-    maven {
-        producesConfig = false
-        mavenVersion = '3.0.3'
-        groupId = 'com.acme'
-    }
+```groovy
+maven {
+    producesConfig = false
+    mavenVersion = '3.0.3'
+    groupId = 'com.acme'
+}
 
-    foo {
-        inherit 'maven'
-        artifactId = 'foo-all'
-    }
+foo {
+    inherit 'maven'
+    artifactId = 'foo-all'
+}
+```
 
 You can also inherit from multiple jobs. Example:
 
-    // omitted maven and git configurations
+```groovy
+// omitted maven and git configurations
 
-    foo {
-        inherit 'maven', 'git'
-    }
+foo {
+    inherit 'maven', 'git'
+}
+```
 
 More API information can be found by looking at API documentation and source
 code (it's really small) available at `docs/api` and `src` directories

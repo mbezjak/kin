@@ -1,4 +1,4 @@
-Still unfinished!
+Documentation is still unfinished!
 
 # kin
 jenkins/hudson job configuration generator
@@ -31,8 +31,8 @@ Ideally all other maven projects should reuse this configuration while changing:
  * group id
  * artifact id
 
-Manually synchronizing configuration across all projects is a waste of time. By
-using `kin` you can create templates that are used across projects while
+Manually synchronizing configuration across all projects is a waste of
+time. `kin` allows you to create templates that are used across projects while
 specifying only those properties that differ.
 
 ## Example usage
@@ -73,8 +73,8 @@ Easiest way to create a template is to use jenkins/hudson web interface. Simply
 create a new job and configure it the way you'd like. Afterwards copy job
 configuration into `*.tpl` file. For example, for maven project named `foo` copy
 `$JENKINS_HOME/jobs/foo/config.xml` into `maven.tpl`. Now edit template by
-replacing variable configuration with `$name` properties. It will make more
-sense in example section.
+replacing variable configuration properties with `$name`. It will make more
+sense in walkthrough section.
 
 ## DSL exaplained (build.kin file)
 Simple DSL is setup to support `build.kin` file. It looks like this:
@@ -93,6 +93,7 @@ To share common properties across job configurations:
         // doesn't produce jenkins/hudson job configuration but is only used
         // to share common configuration across jobs
         producesConfig = false
+
         template = 'maven.tpl' // this is the default
         mavenVersion = '3.0.3'
     }
@@ -111,7 +112,8 @@ To share common properties across job configurations:
         artifactId = 'bar'
     }
 
-Remember that groovy is underneath `build.kin` therefor we could write:
+Underneath that DSL is groovy. Therefor we could write more groovy like code to
+reduce number of lines further:
 
     maven {
         producesConfig = false
@@ -149,6 +151,60 @@ Or you can use `addJob` method as part of API that
 
     mavenProject 'foo'
     mavenProject 'bar'
+
+## API available in build.kin file
+You can step away from DSL if you want to. We've already seen `addJob` method
+available in `hr.helix.kin.script.BuildScript`. This block:
+
+    foo {
+        a = 1
+        b = 2
+    }
+
+is equivalent to:
+
+    addJob 'foo', {
+        a = 1
+        b = 2
+    }
+
+or:
+
+    addJob('foo') {
+        a = 1
+        b = 2
+    }
+
+`hr.helix.kin.model.Job` class provides `inherit` method. It can be used to
+specified job name from which to inherit parameters. In following example `foo`
+job inherits both `mavenVersion` and `groupId` properties.
+
+    maven {
+        producesConfig = false
+        mavenVersion = '3.0.3'
+        groupId = 'com.acme'
+    }
+
+    foo {
+        inherit 'maven'
+        artifactId = 'foo-all'
+    }
+
+You can also inherit from multiple jobs. Example:
+
+    // omitted maven and git configurations
+
+    foo {
+        inherit 'maven', 'git'
+    }
+
+More API information can be found by looking at API documentation and source
+code (it's really small) available at `docs/api` and `src` directories
+respectively. Following classes are directly responsible for `build.kin` file:
+
+ * `hr.helix.kin.script.BuildScript`
+ * `hr.helix.kin.model.Job`
+ * `hr.helix.kin.model.Build`
 
 ## Walkthrough
 

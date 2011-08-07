@@ -210,7 +210,33 @@ respectively. Following classes are directly responsible for `build.kin` file:
 
 
 ## How to install created job configurations
+What to do after `kin` successfully creates jenkins/hudson job configurations?
+Upload created `build` directory to `$JENKINS_HOME/jobs` directory of
+course. `build` directory matches [directory
+structure](http://wiki.hudson-ci.org/display/HUDSON/Administering+Hudson) of
+`$JENKINS_HOME/jobs`.
 
+Here is a very simple and elegant solution that works when jenkins/hudson is
+installed on Linux. Moreover it automates building configuration files. Put
+`kin.jar`, `build.kin` and `*.tpl` files into one directory under SCM (`git`,
+`mercurial` or any other). Create new jenkins/hudson job and setup SCM and build
+triggers (example, poll every 10 minutes). Add new shell build step with
+following content:
+
+    java -jar "$WORKSPACE/kin.jar"
+    rsync --archive --checksum --verbose "$WORKSPACE/build/" "$HOME/jobs"
+    curl "${JENKINS_URL}reload"
+
+Now every time you commit (and push) a change in configuration jenkins/hudson
+will update configuration and reload itself automatically. Note that this
+approach hasn't been tested in distributed environment!
+
+Hints for other solutions: rsync, scp, wget, nfs, windows (samba) share,
+jenkins/hudson script console, [jenkins/hudson remote
+API](http://stackoverflow.com/questions/3886892/configure-or-create-hudson-job-automatically),
+etc.
+
+For hudson just replace `JENKINS` with `HUDSON`.
 
 ## Flexibility
 Remember that `build.kin` is powered by very simple DSL. Underneath all that is

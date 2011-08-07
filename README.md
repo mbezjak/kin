@@ -76,7 +76,7 @@ configuration into `*.tpl` file. For example, for maven project named `foo` copy
 replacing variable configuration with `$name` properties. It will make more
 sense in example section.
 
-## build.kin
+## DSL exaplained (build.kin file)
 Simple DSL is setup to support `build.kin` file. It looks like this:
 
     foo { // <- project name
@@ -150,7 +150,7 @@ Or you can use `addJob` method as part of API that
     mavenProject 'foo'
     mavenProject 'bar'
 
-## Example
+## Walkthrough
 
 
 ## How to install created job configurations

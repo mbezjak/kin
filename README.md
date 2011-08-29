@@ -340,6 +340,10 @@ created: `build/kin/config.xml`, `build/foo/config.xml` and
  * `$scm` is replaced with `http://acme.com/git/bar`
  * `$task` is replaced with `build`
 
+Note: every template can also use special `jobName` property. It is always bound
+to current job configuration. For example, when building job configuration
+`foo`, property `$jobName` has a value of `foo`. Same for `bar` and so on.
+
 ## How to install created job configurations
 What to do after `kin` successfully creates jenkins/hudson job configurations?
 Upload created `build` directory to `$JENKINS_HOME/jobs` directory of

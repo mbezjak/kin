@@ -350,9 +350,9 @@ structure](http://wiki.hudson-ci.org/display/HUDSON/Administering+Hudson) of
 Here is a very simple and elegant solution that works when jenkins/hudson is
 installed on Linux. Moreover it automates building configuration files. Put
 `kin.jar`, `build.kin` and `*.tpl` files into one directory under SCM (`git`,
-`mercurial` or any other). Create new jenkins/hudson job and setup SCM and build
-triggers (example, poll every 10 minutes). Add new shell build step with
-following content:
+`mercurial` or any other). Create new jenkins/hudson job, setup SCM and build
+triggers (example, poll every 10 minutes). SCM should use *clean build*
+option. Add new shell build step with following content:
 
     java -jar "$WORKSPACE/kin.jar"
     rsync --archive --checksum --verbose "$WORKSPACE/build/" "$HOME/jobs"

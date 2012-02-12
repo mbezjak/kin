@@ -7,7 +7,6 @@ targetCompatibility = 1.6
 
 repositories {
     mavenCentral()
-    mavenRepo urls: 'http://m2repo.spockframework.org/snapshots'
 }
 
 dependencies {

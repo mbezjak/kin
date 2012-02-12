@@ -28,7 +28,6 @@ jar {
 task dist(type: Zip) {
     dependsOn jar, groovydoc
     from jar.archivePath
-    from 'Changelog.md'
     from 'LICENSE'
     from 'README.md'
     into('docs/api') {

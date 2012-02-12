@@ -1,6 +1,5 @@
 Things to do when releasing:
 
- * Mention changes in `Changelog.md`
  * Update version in `build.gradle`
  * Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
 

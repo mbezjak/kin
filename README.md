@@ -386,5 +386,8 @@ templates and building job configurations.
 ## Source code
 Source code is available at github: https://github.com/mbezjak/kin
 
+## Roadmap and changelog
+Roadmap and changelog are available at: https://github.com/mbezjak/kin/issues
+
 ## License
 Project uses MIT license. Check LICENSE file for more info.

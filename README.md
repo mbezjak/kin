@@ -7,9 +7,9 @@ job configuration from a template.
 
 ## Rationale
 Say you have 10 projects of similar type. Be that ant, maven, gradle, grails or
-any other type projects. They usually have almost identical configuration: log
-rotation, source control management, triggers, goals (ant build, maven install,
-gradle build, grails war, ...), reports, publishers, etc.
+projects of any other type. They usually have almost identical configuration:
+log rotation, source control management, triggers, goals (ant build, maven
+install, gradle build, grails war, ...), reports, publishers, etc.
 
 Example, let one maven project be configured as follows:
 
@@ -23,7 +23,8 @@ Example, let one maven project be configured as follows:
  * use cobertura publisher
  * collect `target/*.jar` artifacts
 
-Ideally all other maven projects should reuse this configuration while changing:
+Ideally, all other maven projects should reuse this configuration while
+changing:
 
  * SCM URL
  * group id
@@ -56,19 +57,19 @@ Just Java 6. Everything else is bundled in jar itself.
 In order to simplify configuration process `kin` uses the fact that
 jenkins/hudson store their job configuration in XML file. So when you create new
 job named `foo` via web interface jenkins stores job configuration in
-`$JENKINS_HOME/jobs/foo/config.xml` file. `$JENKINS_HOME` location can vary. For
-jenkins installed by DEB package on Ubuntu it's `/var/lib/jenkins`. Running
+`$JENKINS_HOME/jobs/foo/config.xml` file. `$JENKINS_HOME` location can vary.
+Jenkins installed by DEB package on Ubuntu uses `/var/lib/jenkins`. Running
 jenkins standalone uses `$HOME/.jenkins`. More information on [jenkins wiki
 page](https://wiki.jenkins-ci.org/display/JENKINS/Administering+Jenkins). The
-same rule applies for hudson aswell.
+same rule applies for hudson.
 
 To create jenkins/hudson job configuration via `kin` you need to write
 `build.kin` file and create necessary templates. Usually one per project type
 (ant, maven, gradle, grails, etc.) though that is completely up to you.
 
 ## Creating job templates
-Easiest way to create a template is to use jenkins/hudson web interface. Simply
-create a new job and configure it the way you'd like. Afterwards copy job
+Easiest way to create a template is to use jenkins/hudson web interface. Create
+a new job and configure it the way you'd like. Afterwards, copy created job
 configuration into `*.tpl` file. For example, for maven project named `foo` copy
 `$JENKINS_HOME/jobs/foo/config.xml` into `maven.tpl`. Now edit template by
 replacing variable configuration properties with `$name`. It will make more
@@ -319,8 +320,8 @@ bar {
 
 After running `java -jar kin.jar` three job configurations (kin, foo, bar) are
 created: `build/kin/config.xml`, `build/foo/config.xml` and
-`build/bar/config.xml`. When building job configuration each `$name` property in
-`gradle.tpl` is replaced with actual property value specified in `build.kin`.
+`build/bar/config.xml`. When building job configuration, each `$name` property
+in `gradle.tpl` is replaced with actual property value specified in `build.kin`.
 
 `kin` job configuration:
 
@@ -346,7 +347,7 @@ to current job configuration. For example, when building job configuration
 
 ## How to install created job configurations
 What to do after `kin` successfully creates jenkins/hudson job configurations?
-Upload created `build` directory to `$JENKINS_HOME/jobs` directory of
+Upload created `build` directory to `$JENKINS_HOME/jobs` directory, of
 course. `build` directory matches [directory
 structure](http://wiki.hudson-ci.org/display/HUDSON/Administering+Hudson) of
 `$JENKINS_HOME/jobs`.

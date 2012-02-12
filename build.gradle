@@ -12,8 +12,6 @@ repositories {
 dependencies {
     groovy 'org.codehaus.groovy:groovy-all:1.8.1'
     testCompile 'org.spockframework:spock-core:0.5-groovy-1.8'
-    testCompile 'cglib:cglib-nodep:2.2.2'
-    testCompile 'junit:junit:4.8.2'
 }
 
 jar {

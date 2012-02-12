@@ -389,5 +389,8 @@ Source code is available at github: https://github.com/mbezjak/kin
 ## Roadmap and changelog
 Roadmap and changelog are available at: https://github.com/mbezjak/kin/issues
 
+## Additional documentation
+Additional documentation is available at: https://github.com/mbezjak/kin/wiki
+
 ## License
 Project uses MIT license. Check LICENSE file for more info.

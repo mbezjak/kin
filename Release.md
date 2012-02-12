@@ -10,5 +10,5 @@ git work:
     $ git push
     $ git push --tags
 
-Then `gradle build` and upload `build/distributions/kin-$version.zip` to
+Then `gradle dist` and upload `build/distributions/kin-$version.zip` to
 `https://github.com/mbezjak/kin/downloads`.

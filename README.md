@@ -383,6 +383,17 @@ Templates are processed by
 - so groovy again. This gives you a great deal of flexibility when creating
 templates and building job configurations.
 
+## Build from Source
+Prerequisites: JDK 6+
+
+    $ ./gradlew clean build
+
+To import project into eclipse:
+
+    $ ./gradlew eclipse
+
+Then: File -> Import... -> Existing Projects into Workspace
+
 ## Further Resources
 
 Homepage       https://github.com/mbezjak/kin

@@ -1,13 +1,16 @@
-Things to do when releasing:
+Kin release steps:
 
- * Update version in `build.gradle`
- * Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
+1. Update version in `build.gradle`
+2. Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
+3. Gradle work:
 
-git work:
+       $ gradle dist
 
-    $ git tag $version
-    $ git push
-    $ git push --tags
+4. Upload `build/distributions/kin-$version.zip` to
+`https://github.com/mbezjak/kin/downloads`
 
-Then `gradle dist` and upload `build/distributions/kin-$version.zip` to
-`https://github.com/mbezjak/kin/downloads`.
+5. Git work:
+
+        $ git tag $version
+        $ git push
+        $ git push --tags

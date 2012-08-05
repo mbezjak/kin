@@ -383,14 +383,9 @@ Templates are processed by
 - so groovy again. This gives you a great deal of flexibility when creating
 templates and building job configurations.
 
-## Source code
-Source code is available at github: https://github.com/mbezjak/kin
+## Further Resources
 
-## Roadmap and changelog
-Roadmap and changelog are available at: https://github.com/mbezjak/kin/issues
-
-## Additional documentation
-Additional documentation is available at: https://github.com/mbezjak/kin/wiki
-
-## License
-Project uses MIT license. Check LICENSE file for more info.
+Homepage       https://github.com/mbezjak/kin
+Issue tracker  https://github.com/mbezjak/kin/issues
+Wiki           https://github.com/mbezjak/kin/wiki
+License        MIT (see LICENSE file)

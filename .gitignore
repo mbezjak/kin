@@ -2,7 +2,6 @@
 /.project
 /.settings/
 
-build/
-
-/bin/
 /.gradle/
+/build/
+/bin/

@@ -38,6 +38,8 @@ task dist(type: Zip) {
     }
 }
 
+build.dependsOn dist
+
 task wrapper(type: Wrapper) {
     gradleVersion = '1.1'
 }

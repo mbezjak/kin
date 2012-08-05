@@ -4,7 +4,7 @@ Kin release steps:
 2. Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
 3. Gradle work:
 
-       $ gradle dist
+       $ ./gradlew dist
 
 4. Upload `build/distributions/kin-$version.zip` to
 `https://github.com/mbezjak/kin/downloads`

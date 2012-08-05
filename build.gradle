@@ -37,3 +37,7 @@ task dist(type: Zip) {
         from 'src/main/groovy'
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.1'
+}

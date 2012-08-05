@@ -396,7 +396,7 @@ Then: File -> Import... -> Existing Projects into Workspace
 
 ## Further Resources
 
-Homepage       https://github.com/mbezjak/kin
-Issue tracker  https://github.com/mbezjak/kin/issues
-Wiki           https://github.com/mbezjak/kin/wiki
-License        MIT (see LICENSE file)
+* Homepage:       https://github.com/mbezjak/kin
+* Issue tracker:  https://github.com/mbezjak/kin/issues
+* Wiki:           https://github.com/mbezjak/kin/wiki
+* License:        MIT (see LICENSE file)

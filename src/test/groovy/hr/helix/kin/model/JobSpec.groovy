@@ -88,11 +88,11 @@ class JobSpec extends Specification {
         }
         def expected = """\
         simple {
-            inherit(["foo", "bar"])
+            inherit(['foo', 'bar'])
             producesConfig = false
-            template = "foo.tpl"
+            template = 'foo.tpl'
             a = 1
-            b = "string"
+            b = 'string'
         }""".stripIndent()
 
         expect:

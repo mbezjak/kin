@@ -4,8 +4,8 @@ import spock.lang.*
 
 class CommandLineArgumentsSpec extends Specification {
 
-    @Unroll({ "hasHelpSwitch should return true for argument $arg" })
-    def "hasHelpSwitch should return true if first argument is help switch"() {
+    @Unroll
+    def "hasHelpSwitch should return true for argument #arg"() {
         given:
         def arguments = new CommandLineArguments([arg]as String[])
 
@@ -16,8 +16,8 @@ class CommandLineArgumentsSpec extends Specification {
         arg << ['-h', '--help']
     }
 
-    @Unroll({ "hasVersionSwitch should retrun true for argument $arg" })
-    def "hasVersionSwitch should return true if first argument is version"() {
+    @Unroll
+    def "hasVersionSwitch should return true for argument #arg"() {
         given:
         def arguments = new CommandLineArguments([arg]as String[])
 
@@ -28,8 +28,8 @@ class CommandLineArgumentsSpec extends Specification {
         arg << ['-v', '--version']
     }
 
-    @Unroll({ "isInvalid should return $invalid on $args" })
-    def "isInvalid should return true on invalid arguments"() {
+    @Unroll
+    def "isInvalid should return #invalid on #args"() {
         given:
         def arguments = new CommandLineArguments(args as String[])
 

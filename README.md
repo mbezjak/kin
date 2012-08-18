@@ -1,6 +1,8 @@
 # kin
 jenkins/hudson job configuration generator
 
+[![Build Status](https://secure.travis-ci.org/mbezjak/kin.png?branch=master)](http://travis-ci.org/mbezjak/kin)
+
 ## Summary
 Simplify configuration process for multiple projects by building jenkins/hudson
 job configuration from a template.
@@ -396,7 +398,8 @@ Then: File -> Import... -> Existing Projects into Workspace
 
 ## Further Resources
 
-* Homepage:       https://github.com/mbezjak/kin
-* Issue tracker:  https://github.com/mbezjak/kin/issues
-* Wiki:           https://github.com/mbezjak/kin/wiki
-* License:        MIT (see LICENSE file)
+ * Homepage:       https://github.com/mbezjak/kin
+ * Issue tracker:  https://github.com/mbezjak/kin/issues
+ * Wiki:           https://github.com/mbezjak/kin/wiki
+ * CI server:      http://travis-ci.org/mbezjak/kin
+ * License:        MIT (see LICENSE file)

@@ -1,16 +1,17 @@
 Release steps:
 
-1. Update version in `build.gradle`
-2. Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
-3. Gradle work:
+1. Add `Changelog.md` entry
+2. Update version in `build.gradle`
+3. Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
+4. Gradle work:
 
        $ ./gradlew clean build
 
-4. Upload `build/distributions/kin-$version.zip` to
+5. Upload `build/distributions/kin-$version.zip` to
 `https://github.com/mbezjak/kin/downloads`
 
-5. Git work:
+6. Git work:
 
-        $ git tag $version
+        $ git tag --annotate $version
         $ git push
         $ git push --tags

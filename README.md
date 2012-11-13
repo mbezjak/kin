@@ -401,6 +401,7 @@ Then: File -> Import... -> Existing Projects into Workspace
  * Homepage:   https://github.com/mbezjak/kin
  * Issues:     https://github.com/mbezjak/kin/issues
  * Changelog:  see Changelog.md file
+ * Roadmap:    see Roadmap.md file
  * Wiki:       https://github.com/mbezjak/kin/wiki
  * CI Server:  http://travis-ci.org/mbezjak/kin
  * License:    MIT (see LICENSE file)

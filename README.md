@@ -398,8 +398,9 @@ Then: File -> Import... -> Existing Projects into Workspace
 
 ## Further Resources
 
- * Homepage:       https://github.com/mbezjak/kin
- * Issue tracker:  https://github.com/mbezjak/kin/issues
- * Wiki:           https://github.com/mbezjak/kin/wiki
- * CI server:      http://travis-ci.org/mbezjak/kin
- * License:        MIT (see LICENSE file)
+ * Homepage:   https://github.com/mbezjak/kin
+ * Issues:     https://github.com/mbezjak/kin/issues
+ * Changelog:  see Changelog.md file
+ * Wiki:       https://github.com/mbezjak/kin/wiki
+ * CI Server:  http://travis-ci.org/mbezjak/kin
+ * License:    MIT (see LICENSE file)

@@ -1,4 +1,4 @@
-Kin release steps:
+Release steps:
 
 1. Update version in `build.gradle`
 2. Update version in `src/main/groovy/hr/helix/kin/Help.groovy`

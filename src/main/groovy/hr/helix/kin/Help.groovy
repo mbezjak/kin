@@ -2,13 +2,13 @@ package hr.helix.kin
 
 /**
  * Provides help and version information.
- * 
+ *
  * @author Miro Bezjak
  * @since 0.1
  */
 class Help {
 
-    static final String VERSION  = '0.1'
+    static final String VERSION  = '0.1.1'
     static final String DOC_LINK = 'https://github.com/mbezjak/kin'
 
     static String getHelpInfo() {

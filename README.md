@@ -48,8 +48,8 @@ specifying only those properties that differ.
     $ java -jar kin.jar
 
 ## Install
-There is no installation procedure. Simply download latest
-[distribution](https://github.com/mbezjak/kin/downloads), extract zip, create
+There is no installation procedure. Simply download latest binary
+[release](https://github.com/mbezjak/kin/releases), extract zip, create
 `build.kin` file and run `java -jar kin.jar`.
 
 ## Required dependencies

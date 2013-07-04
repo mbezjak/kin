@@ -5,7 +5,7 @@ Release steps:
 3. Update version in `src/main/groovy/hr/helix/kin/Help.groovy`
 4. Gradle work:
 
-       $ ./gradlew clean build
+       $ ./gradlew clean dist
 
 5. Git work:
 

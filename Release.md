@@ -7,11 +7,11 @@ Release steps:
 
        $ ./gradlew clean build
 
-5. Upload `build/distributions/kin-$version.zip` to
-`https://github.com/mbezjak/kin/downloads`
-
-6. Git work:
+5. Git work:
 
         $ git tag --annotate $version
         $ git push
         $ git push --tags
+
+6. Upload `build/distributions/kin-$version.zip` to
+`https://github.com/mbezjak/kin/releases`

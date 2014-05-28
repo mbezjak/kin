@@ -77,7 +77,7 @@ configuration into `*.tpl` file. For example, for maven project named `foo` copy
 replacing variable configuration properties with `$name`. It will make more
 sense in walkthrough section.
 
-## DSL exaplained (build.kin file)
+## DSL explained (build.kin file)
 Simple DSL is setup to support `build.kin` file. It looks like this:
 
 ```groovy
@@ -117,7 +117,7 @@ bar {
 }
 ```
 
-Underneath that DSL is groovy. Therefor we could write more groovy like code to
+Underneath that DSL is groovy. Therefore we could write more groovy like code to
 reduce number of lines further:
 
 ```groovy

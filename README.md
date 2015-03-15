@@ -73,7 +73,7 @@ To create jenkins/hudson job configuration via `kin` you need to write
 Easiest way to create a template is to use jenkins/hudson web interface. Create
 a new job and configure it the way you'd like. Afterwards, copy created job
 configuration into `*.tpl` file. For example, for maven project named `foo` copy
-`$JENKINS_HOME/jobs/foo/config.xml` into `maven.tpl`. Now edit template by
+`$JENKINS_HOME/jobs/foo/config.xml` into `maven.tpl`. Now edit the template by
 replacing variable configuration properties with `$name`. It will make more
 sense in walkthrough section.
 

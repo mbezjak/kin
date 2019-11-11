@@ -53,7 +53,7 @@ There is no installation procedure. Simply download latest binary
 `build.kin` file and run `java -jar kin.jar`.
 
 ## Required dependencies
-Just Java 6. Everything else is bundled in jar itself.
+Just Java. Everything else is bundled in jar itself.
 
 ## Build process
 In order to simplify configuration process `kin` uses the fact that

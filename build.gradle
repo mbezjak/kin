@@ -1,5 +1,4 @@
 apply plugin: 'groovy'
-apply plugin: 'eclipse'
 
 version = '0.1.1'
 sourceCompatibility = 1.8

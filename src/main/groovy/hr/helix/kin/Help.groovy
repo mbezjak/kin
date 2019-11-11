@@ -8,7 +8,7 @@ package hr.helix.kin
  */
 class Help {
 
-    static final String VERSION  = '0.1.1'
+    static final String VERSION  = '0.1.2'
     static final String DOC_LINK = 'https://github.com/mbezjak/kin'
 
     static String getHelpInfo() {

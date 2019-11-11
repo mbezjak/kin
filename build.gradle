@@ -1,6 +1,6 @@
 apply plugin: 'groovy'
 
-version = '0.1.1'
+version = '0.1.2'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

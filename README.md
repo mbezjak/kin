@@ -369,6 +369,10 @@ Now every time you commit (and push) a change in configuration jenkins/hudson
 will update configuration and reload itself automatically. Note that this
 approach hasn't been tested in distributed environment!
 
+Alternatively, for each job, execute:
+
+    curl --data-binary @build/foo/config.xml http://your-jenkins-server/job/foo/config.xml
+
 Hints for other solutions: rsync, scp, wget, nfs, windows (samba) share,
 jenkins/hudson script console, [jenkins/hudson remote
 API](http://stackoverflow.com/questions/3886892/configure-or-create-hudson-job-automatically),
